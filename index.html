@@ -65,13 +65,30 @@
       font-weight: 500;
     }
     nav a:hover { color: var(--teal); }
+    nav a.yt-nav {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    nav a.yt-nav:hover { opacity: 0.8; }
 
     /* ヒーロー */
     .hero {
-      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      position: relative;
+      background: url('maldives.jpg') center center / cover no-repeat;
       color: white;
-      padding: 40px 16px;
+      padding: 60px 16px;
       text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 90, 87, 0.62);
+    }
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
     .hero h1 {
       font-size: 22px;
@@ -83,8 +100,33 @@
       font-size: 14px;
       opacity: 0.9;
       max-width: 480px;
-      margin: 0 auto;
+      margin: 0 auto 20px;
     }
+    .yt-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .yt-btn:hover { opacity: 0.85; }
+    .yt-channel-btn {
+      display: block;
+      background: var(--accent);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+    .yt-channel-btn:hover { opacity: 0.85; }
 
     /* メインレイアウト */
     .container {
@@ -236,54 +278,75 @@
 
     /* 著者プロフィール */
     .author-avatar {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       margin: 0 auto 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
+      display: block;
+      object-fit: cover;
+      border: 3px solid var(--teal-light);
     }
     .author-name {
       text-align: center;
       font-weight: 700;
-      font-size: 15px;
-      margin-bottom: 4px;
+      font-size: 16px;
+      margin-bottom: 2px;
     }
     .author-subtitle {
       text-align: center;
       font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .author-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .stat-item {
-      background: var(--teal-light);
-      border-radius: 6px;
-      padding: 8px;
+    .author-catch {
       text-align: center;
-    }
-    .stat-num {
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--teal-dark);
-    }
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-muted);
+      background: var(--teal-light);
+      border-radius: 4px;
+      padding: 5px 8px;
+      margin-bottom: 12px;
+      line-height: 1.5;
     }
     .author-bio {
       font-size: 12px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 12px;
     }
+    .author-bio a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .author-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .author-link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .author-link-btn.yt {
+      background: var(--accent);
+      color: white;
+    }
+    .author-link-btn.profile {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .author-link-btn:hover { opacity: 0.8; }
 
     /* 目標メーター */
     .meter-label {
@@ -366,10 +429,10 @@
   <div class="header-inner">
     <a href="/" class="site-title">ポイモル<span>ブログ</span></a>
     <nav>
-      <a href="#">移動系</a>
-      <a href="#">アプリ検証</a>
-      <a href="#">金融系</a>
-      <a href="#">プロフィール</a>
+      <a href="#">検証レポート</a>
+      <a href="#">アプリ紹介</a>
+      <a href="#">月次報告</a>
+      <a href="#" class="yt-nav">▶ YouTube</a>
     </nav>
   </div>
 </header>
@@ -377,7 +440,8 @@
 <!-- ヒーロー -->
 <div class="hero">
   <h1>ポイ活の実体験データを、<br>正直に公開します。</h1>
-  <p>副業は怖くても、ポイ活ならできる。<br>移動・アプリ・金融系ポイ活を実際に試して、リアルな数字で発信中。</p>
+  <p>副業は怖くても、ポイ活ならできる。<br>検証データをブログ＆YouTubeで発信中。</p>
+  <a href="#" class="yt-btn">▶ YouTubeチャンネルを見る</a>
 </div>
 
 <!-- メインコンテンツ -->
@@ -413,8 +477,8 @@
         <div class="article-info">
           <h3>【チョッキンズ 1ヶ月検証】63,084コイン＝525円の正直レポートと攻略法</h3>
           <div class="article-meta">
-            <span class="tag">LINEアプリ</span>
-            <span class="tag">検証</span>
+            <span class="tag">ガチ検証</span>
+            <span class="tag">アプリ紹介</span>
             2026年3月 掲載
           </div>
         </div>
@@ -425,8 +489,8 @@
         <div class="article-info">
           <h3>SBI新生銀行ハイパー預金を試してみた｜普通預金より年◯%高い実態</h3>
           <div class="article-meta">
+            <span class="tag">ガチ検証</span>
             <span class="tag">金融系</span>
-            <span class="tag">銀行</span>
             2026年4月 掲載
           </div>
         </div>
@@ -437,8 +501,8 @@
         <div class="article-info">
           <h3>【おぢぽ検証】スクラッチ・ボトル集め 2ヶ月のリアルな収益を公開</h3>
           <div class="article-meta">
-            <span class="tag">くじ系</span>
-            <span class="tag">検証</span>
+            <span class="tag">ガチ検証</span>
+            <span class="tag">アプリ紹介</span>
             2026年4月 掲載
           </div>
         </div>
@@ -449,8 +513,8 @@
         <div class="article-info">
           <h3>移動系ポイ活アプリ5選を比較｜トリマ・Miles・aruku&amp;を実際に使った結論</h3>
           <div class="article-meta">
+            <span class="tag">検証レポート</span>
             <span class="tag">比較</span>
-            <span class="tag">移動系</span>
             2026年5月 掲載
           </div>
         </div>
@@ -464,21 +528,16 @@
 
     <!-- 著者プロフィール -->
     <div class="sidebar-card">
-      <p class="section-title">👤 著者</p>
-      <div class="author-avatar">🦭</div>
+      <p class="section-title">👤 著者プロフィール</p>
+      <img class="author-avatar" src="icon.png" alt="ポイモル">
       <div class="author-name">ポイモル</div>
       <div class="author-subtitle">29歳・都内会社員・新婚</div>
-      <div class="author-stats">
-        <div class="stat-item">
-          <div class="stat-num">5+</div>
-          <div class="stat-label">検証アプリ数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">3年</div>
-          <div class="stat-label">目標期間</div>
-        </div>
+      <div class="author-catch">ポイ活 × 投資で<br>手出し0円のモルディブを目指す男</div>
+      <p class="author-bio">副業は怖くてできないけど、ポイ活ならできそう——そう思って始めました。実際に使ったアプリのデータを正直に公開し、<a href="#">YouTubeとブログ</a>で発信しています。</p>
+      <div class="author-links">
+        <a href="#" class="author-link-btn yt">▶ YouTubeチャンネルを見る</a>
+        <a href="#" class="author-link-btn profile">詳しいプロフィール →</a>
       </div>
-      <p class="author-bio">ポイ活で貯めたポイントをインデックス投資で運用し、3年以内に手出し0円でモルディブ旅行（約100万円）を目指しています。実際に使ったアプリのデータのみ公開。</p>
     </div>
 
     <!-- モルディブメーター -->
@@ -498,12 +557,17 @@
     <div class="sidebar-card">
       <p class="section-title">🗂 カテゴリ</p>
       <div class="category-list">
-        <a href="#" class="category-item">🚶 移動系ポイ活 <span class="category-count">4</span></a>
-        <a href="#" class="category-item">📱 アプリ検証 <span class="category-count">3</span></a>
-        <a href="#" class="category-item">🏦 金融系ポイ活 <span class="category-count">2</span></a>
-        <a href="#" class="category-item">💳 クレカ還元 <span class="category-count">1</span></a>
-        <a href="#" class="category-item">📊 比較・まとめ <span class="category-count">2</span></a>
+        <a href="#" class="category-item">📊 検証レポート <span class="category-count">5</span></a>
+        <a href="#" class="category-item">📱 アプリ紹介 <span class="category-count">3</span></a>
+        <a href="#" class="category-item">📅 月次報告 <span class="category-count">2</span></a>
       </div>
+    </div>
+
+    <!-- YouTubeチャンネル -->
+    <div class="sidebar-card" style="background: linear-gradient(135deg, #fff5f2, #fff0ea); border-color: #ffd4c2;">
+      <p class="section-title" style="border-color: var(--accent); color: var(--text);">▶ YouTubeでも発信中</p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6;">月次の収支報告・ポイント運用レースなど、ブログより詳しい検証動画を公開中。</p>
+      <a href="#" class="yt-channel-btn">チャンネルを見る →</a>
     </div>
 
   </aside>
