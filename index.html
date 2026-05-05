@@ -567,9 +567,9 @@
       <p class="section-title">👤 著者プロフィール</p>
       <img class="author-avatar" src="icon.png" alt="ポイモル">
       <div class="author-name">ポイモル</div>
-      <div class="author-subtitle">29歳・都内会社員・新婚</div>
-      <div class="author-catch">ポイ活 × 投資で<br>手出し0円のモルディブを目指す男</div>
-      <p class="author-bio">副業は怖くてできないけど、ポイ活ならできそう——そう思って始めました。実際に使ったアプリのデータを正直に公開し、<a href="#">YouTubeとブログ</a>で発信しています。</p>
+      <div class="author-subtitle">29歳・都内会社員</div>
+      <div class="author-catch">ポイ活 × 投資で<br>手出し0円でモルディブを目指す男</div>
+      <p class="author-bio">ポイ活歴4年以上。副業は怖くてできないけど、ポイ活ならできそう──そう思って始めました。実際に使ったアプリのデータを正直に公開し、<a href="#">YouTubeやブログ</a>で発信中。</p>
       <div class="author-links">
         <a href="#" class="author-link-btn yt">▶ YouTubeチャンネルを見る</a>
         <a href="#" class="author-link-btn profile">詳しいプロフィール →</a>
@@ -619,5 +619,28 @@
   <p>© 2026 ポイモルブログ｜当サイトはアフィリエイト広告を利用しています</p>
 </footer>
 
+<script>
+  async function updateMaldivesMeter() {
+    const sheetId = '1sVYNqqg2ysLfiyTG_RbbTpBPpytwR2sOgMTCLEVgfOQ';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=ダッシュボード&range=B2`;
+    try {
+      const res = await fetch(url);
+      const text = await res.text();
+      const jsonStr = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1];
+      const json = JSON.parse(jsonStr);
+      const current = json.table.rows[0].c[0].v;
+      const target = 1000000;
+      const pct = (current / target * 100).toFixed(1);
+
+      document.querySelector('.meter-fill').style.width = pct + '%';
+      document.querySelector('.meter-label span:last-child').textContent = pct + '%';
+      document.querySelector('.meter-note').textContent =
+        `累計 ${Math.round(current).toLocaleString()}pt ／ 目標 ${target.toLocaleString()}pt`;
+    } catch (e) {
+      // フェッチ失敗時はハードコード値のまま表示
+    }
+  }
+  updateMaldivesMeter();
+</script>
 </body>
 </html>
