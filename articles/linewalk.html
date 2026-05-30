@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINE WALKとは？仕組み・稼ぎ方・交換レートを徹底解説【2026年最新版】｜歩いてモルディブへ行く男</title>
+  <meta name="description" content="LINE WALKの仕組み・コインの貯め方・アイテムの損益分岐まで、2ヶ月実際に使って分かったことを全公開。月1,000〜1,600円の実績データあり。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #3A9B96;
+      --teal-light: #e8f5f4;
+      --teal-dark: #2d7a76;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --border: #e5e5e5;
+      --bg: #f8f9fa;
+      --white: #ffffff;
+      --accent: #ff6b35;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ヘッダー */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--teal);
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .site-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--teal); }
+    nav a.yt-nav {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* パンくず */
+    .breadcrumb {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* メインレイアウト */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 24px;
+    }
+
+    /* 記事ヘッダー */
+    .article-header {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .article-badge {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+    .article-badge.orange { background: var(--accent); }
+    .article-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .article-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .article-thumbnail {
+      background: linear-gradient(135deg, var(--teal-light), #d0eeec);
+      border-radius: 8px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+    /* TODO: 実際の画像ができたら↑を削除して↓を有効化
+    .article-thumbnail img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    */
+
+    /* 記事本文 */
+    .article-content {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 28px;
+    }
+    .article-content h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      border-left: 4px solid var(--teal);
+      padding-left: 12px;
+      margin: 28px 0 14px;
+    }
+    .article-content h2:first-child { margin-top: 0; }
+    .article-content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      margin: 20px 0 10px;
+      padding: 6px 10px;
+      background: var(--teal-light);
+      border-radius: 4px;
+    }
+    .article-content p {
+      margin-bottom: 14px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .article-content ul, .article-content ol {
+      margin: 10px 0 14px 20px;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .article-content li { margin-bottom: 4px; }
+    .article-content strong { color: var(--teal-dark); }
+    .article-content a { color: var(--teal); text-decoration: none; font-weight: 700; }
+    .article-content a:hover { text-decoration: underline; }
+
+    /* テーブル */
+    .article-content table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 14px 0 20px;
+      overflow-x: auto;
+      display: block;
+    }
+    .article-content th {
+      background: var(--teal);
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .article-content td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .article-content tr:nth-child(even) td { background: var(--bg); }
+
+    /* 結果ボックス */
+    .result-box {
+      background: var(--teal-light);
+      border-left: 4px solid var(--teal);
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 14px;
+      margin: 14px 0;
+    }
+    .result-box strong { color: var(--teal-dark); }
+
+    /* 警告ボックス */
+    .warn-box {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #7a6500;
+      margin: 14px 0;
+    }
+
+    /* アドバイスボックス */
+    .advice-box {
+      background: #f0faf9;
+      border: 1.5px solid var(--teal);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 14px;
+      margin: 14px 0;
+    }
+    .advice-box .advice-title {
+      font-weight: 700;
+      color: var(--teal-dark);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    /* 画像プレースホルダー（TODO用） */
+    .img-placeholder {
+      background: #f0f0f0;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 13px;
+      margin: 16px 0;
+    }
+    .img-placeholder span { font-size: 28px; margin-bottom: 8px; }
+
+    /* 注意書き */
+    .disclaimer {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #7a6500;
+      margin-top: 24px;
+    }
+
+    /* セクション区切り */
+    .article-content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    /* サイドバー */
+    .sidebar-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      border-left: 4px solid var(--teal);
+      padding-left: 10px;
+      margin-bottom: 14px;
+    }
+    .author-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: block;
+      object-fit: cover;
+      border: 3px solid var(--teal-light);
+    }
+    .author-name { text-align: center; font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .author-subtitle { text-align: center; font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+    .author-catch {
+      text-align: center; font-size: 12px; font-weight: 700; color: var(--teal-dark);
+      background: var(--teal-light); border-radius: 4px; padding: 5px 8px; margin-bottom: 10px; line-height: 1.5;
+    }
+    .author-bio { font-size: 12px; color: var(--text-muted); line-height: 1.7; margin-bottom: 10px; }
+    .author-link-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; font-size: 12px; font-weight: 700; padding: 7px;
+      border-radius: 6px; text-decoration: none; transition: opacity 0.2s; width: 100%; margin-bottom: 6px;
+    }
+    .author-link-btn.yt { background: var(--accent); color: white; }
+    .author-link-btn.profile { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    .author-link-btn:hover { opacity: 0.8; }
+
+    .meter-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+    .meter-bar { background: var(--border); border-radius: 99px; height: 12px; overflow: hidden; margin-bottom: 6px; }
+    .meter-fill { background: linear-gradient(90deg, var(--teal), var(--accent)); height: 100%; border-radius: 99px; width: 3.2%; transition: width 1s ease; }
+    .meter-note { font-size: 11px; color: var(--text-muted); text-align: right; }
+
+    .yt-channel-btn {
+      display: block; background: var(--accent); color: white;
+      font-size: 13px; font-weight: 700; padding: 9px;
+      border-radius: 6px; text-decoration: none; text-align: center; transition: opacity 0.2s;
+    }
+    .yt-channel-btn:hover { opacity: 0.85; }
+
+    /* 関連記事 */
+    .related-article {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      text-decoration: none; color: inherit;
+    }
+    .related-article:last-child { border-bottom: none; }
+    .related-article:hover .related-title { color: var(--teal); }
+    .related-icon {
+      width: 36px; height: 36px; background: var(--teal-light);
+      border-radius: 6px; display: flex; align-items: center;
+      justify-content: center; font-size: 16px; flex-shrink: 0;
+    }
+    .related-title { font-size: 12px; font-weight: 700; line-height: 1.4; }
+
+    /* フッター */
+    footer {
+      background: #1a1a1a; color: #aaa;
+      text-align: center; padding: 24px 16px;
+      font-size: 12px; margin-top: 40px;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+
+    /* レスポンシブ */
+    @media (max-width: 680px) {
+      .container { grid-template-columns: 1fr; padding: 0 12px 32px; }
+      nav a:not(.yt-nav) { display: none; }
+      .article-header h1 { font-size: 18px; }
+      .article-content { padding: 16px; }
+      .article-content h2 { font-size: 16px; }
+      .sidebar { order: -1; }
+      .sidebar-card:not(:first-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="site-title">歩いて<span>モルディブへ行く男</span></a>
+    <nav>
+      <a href="/">検証レポート</a>
+      <a href="/">アプリ紹介</a>
+      <a href="/" class="yt-nav">▶ YouTube</a>
+    </nav>
+  </div>
+</header>
+
+<!-- パンくず -->
+<div class="breadcrumb">
+  <a href="/">ホーム</a>
+  <span>›</span>
+  <a href="/">検証レポート</a>
+  <span>›</span>
+  LINE WALK完全ガイド
+</div>
+
+<!-- メインコンテンツ -->
+<div class="container">
+  <main>
+
+    <!-- 記事ヘッダー -->
+    <div class="article-header">
+      <!-- TODO: 実際のサムネイル画像に差し替え -->
+      <div class="article-thumbnail">🚶‍♂️</div>
+      <span class="article-badge">移動系ポイ活</span>
+      <span class="article-badge orange">ガチ検証</span>
+      <h1>LINE WALKとは？仕組み・稼ぎ方・交換レートを徹底解説【2026年最新版】</h1>
+      <div class="article-meta-bar">
+        <span>📅 2026年5月更新</span>
+        <span>✍️ ポイモル</span>
+        <span>📖 約10分で読めます</span>
+      </div>
+    </div>
+
+    <!-- 記事本文 -->
+    <div class="article-content">
+
+      <h2>LINE WALKとは</h2>
+      <p>LINE WALKは、LINEヤフー株式会社が提供する公式ポイ活アプリです。「歩く・移動する・ゲームする・漫画を読む」といった日常の行動でコインが貯まり、貯めたコインをLINEポイントに交換できます。</p>
+      <p>特徴は「ながらポイ活」ができること。通勤・散歩・スマホゲームなど、普段やっていることがそのまま収益になります。課金不要で始められ、LINEアカウントさえあればすぐにスタートできます。</p>
+
+      <div class="result-box">
+        📊 <strong>実績：</strong>チョッキンズ・LINEマンガと組み合わせて月1,265〜1,650円を2ヶ月継続中
+      </div>
+
+      <hr>
+
+      <h2>コインの貯め方：全機能まとめ</h2>
+      <p>LINE WALKには大きく分けて7つのコイン獲得ルートがあります。</p>
+
+      <h3>① 移動（車両ゲージ）</h3>
+      <p>電車・バス・車・自転車・徒歩など、あらゆる移動でゲージが貯まります。</p>
+      <ul>
+        <li>一定の移動距離でゲージが1つ充填 → 車両1台を回収（広告視聴で60コイン）</li>
+        <li>車両上限：初期3台 → コインで最大10台まで拡張可能</li>
+        <li>「移動3倍アイテム」を使うとゲージが3倍速で進む</li>
+      </ul>
+      <!-- TODO: 移動ゲージの仕組みスクリーンショット -->
+      <div class="img-placeholder"><span>📸</span>移動ゲージ画面のスクリーンショット</div>
+      <div class="warn-box">
+        ⚠️ <strong>上限を超えた分は消えてしまいます。</strong>電車通勤など1日に大量移動する人は、上限3台では取りこぼしが発生している可能性があります。たとえば片道5〜6台分のゲージがある通勤をしている場合、往復で10台以上になりますが、上限3台だと毎月6,000コイン以上を捨てている計算になります。
+      </div>
+
+      <h3>② 歩数（ポイくじ）</h3>
+      <p>歩数に応じてチケットが貯まり、くじ引きでコインが当たります。</p>
+      <ul>
+        <li>600歩ごとにボトル1個獲得</li>
+        <li>ボトル1個 = チケット5枚 → ポイくじ1回（<strong>期待値27.9コイン</strong>）</li>
+        <li>上限：1日20個まで（12,000歩で完全到達）</li>
+        <li>アイテム「コニーと歩く」を使うと必要歩数が半分（300歩/個）になる</li>
+      </ul>
+
+      <p><strong>歩数別の1日獲得コイン目安（ポイくじ分のみ）：</strong></p>
+      <table>
+        <tr><th>歩数</th><th>ボトル数</th><th>ポイくじ回数</th><th>期待コイン</th></tr>
+        <tr><td>5,000歩</td><td>8個</td><td>8回</td><td>223コイン</td></tr>
+        <tr><td>10,000歩</td><td>16個</td><td>16回</td><td>447コイン</td></tr>
+        <tr><td>12,000歩以上</td><td>20個（上限）</td><td>20回</td><td>558コイン</td></tr>
+      </table>
+
+      <h3>③ デイリービンゴ</h3>
+      <p>30分に1回アプリを開くだけでマスが開いていく、手軽なボーナス機能です。</p>
+      <ul>
+        <li>3×3の9マスが30分ごとに1マスずつ開く</li>
+        <li>8ビンゴ（全マス）達成：広告再生で100コイン獲得</li>
+      </ul>
+      <p>朝・昼・夜の3回開くだけで着実にビンゴが進みます。</p>
+
+      <h3>④ 時間チケット（りんご育成）</h3>
+      <p>アプリを開かなくても時間の経過でチケットが貯まる放置型機能です。</p>
+      <ul>
+        <li>1時間ごとにりんご（チケット）が1個貯まる</li>
+        <li>最大8個までストック可能</li>
+        <li>ストックが上限に達すると無駄になるため、1日2〜3回チェックするのが理想</li>
+      </ul>
+
+      <h3>⑤ ポイゲ（LINEゲーム連携）</h3>
+      <p>LINEの対応ゲームアプリを毎日プレイすることで星が貯まり、コインを獲得できます。</p>
+      <ul>
+        <li>各アプリで指定の条件を達成 → 星1つ = 広告視聴で60コイン</li>
+        <li>1アプリにつき1日1回まで</li>
+      </ul>
+      <p>特に「LINEチョッキンズ」との連携が強力で、チョッキンズのタンク回収1回ごとに60コインが得られる仕組みです。1日16回回収すれば960コイン/日が確定します。</p>
+
+      <h3>⑥ マンガ（LINEマンガ連携）</h3>
+      <p>LINEマンガで漫画を読むと、LINE WALK側のゲージが貯まります。</p>
+      <ul>
+        <li>LINEマンガのポイ活機能を利用するだけで最低13ゲージが毎日貯まる</li>
+        <li>ゲージ1つ = 広告視聴で60コイン → 最低780コイン/日</li>
+        <li>上限は50ゲージ/日（最大3,000コイン/日）</li>
+      </ul>
+      <p>LINEマンガには独自のポイ活機能もあり、毎日平均850pt獲得→100pt=1円換算で月255円程度の別収入にもなります。</p>
+
+      <h3>⑦ ランキング・友達紹介</h3>
+      <p><strong>ランキング</strong>：友達と週間ステップ数を競う機能。上位入賞で最大5,000コイン/週。ただし、友達にポイ活していることが知られる可能性があります。</p>
+      <p><strong>友達紹介</strong>：招待で最大10,000コイン。同様にバレるリスクあり。</p>
+
+      <h3>⑧ イチオシ（案件系）</h3>
+      <table>
+        <tr><th>種類</th><th>内容</th></tr>
+        <tr><td>大量ゲット</td><td>広告主案件をこなしてコイン獲得</td></tr>
+        <tr><td>レシチャレ</td><td>指定商品を購入したレシートを撮影してコイン獲得</td></tr>
+        <tr><td>ザクザク</td><td>ゲームアプリをDLして指定レベルまで遊ぶとコイン獲得</td></tr>
+        <tr><td>アンケート</td><td>アンケートに回答してコイン獲得</td></tr>
+      </table>
+
+      <hr>
+
+      <h2>LINEポイント交換レート</h2>
+      <p>貯めたコインは以下のレートでLINEポイントに交換できます。</p>
+      <table>
+        <tr><th>必要コイン</th><th>LINEポイント</th><th>実質レート（円換算）</th></tr>
+        <tr><td>36,000コイン</td><td>300ポイント</td><td>0.83円/1,000コイン</td></tr>
+        <tr><td>60,000コイン</td><td>500ポイント</td><td>0.83円/1,000コイン</td></tr>
+        <tr><td>110,000コイン</td><td>1,000ポイント</td><td>0.91円/1,000コイン</td></tr>
+        <tr><td>300,000コイン</td><td>3,000ポイント</td><td><strong>1.00円/1,000コイン（最もお得）</strong></td></tr>
+      </table>
+      <div class="advice-box">
+        <div class="advice-title">💡 ポイント</div>
+        まとめて交換するほどレートが有利になります。余裕があれば300,000コイン貯まるまで待ってから交換するのがベストです。
+      </div>
+
+      <hr>
+
+      <h2>月間シミュレーション（チョッキンズ×LINE WALK×LINEマンガ）</h2>
+      <p>3アプリを組み合わせた場合の月間収益の目安です。</p>
+      <table>
+        <tr><th>収益源</th><th>月間収益</th></tr>
+        <tr><td>チョッキンズ（探求プレイ・ポイゲ含む）</td><td>約494円</td></tr>
+        <tr><td>LINE WALK（歩数・移動・ビンゴ）</td><td>516〜587円（歩数による）</td></tr>
+        <tr><td>LINEマンガ独自ポイ活</td><td>約255円</td></tr>
+        <tr><td><strong>合計（5,000歩ベース）</strong></td><td><strong>約1,265円/月</strong></td></tr>
+        <tr><td><strong>合計（10,000歩ベース）</strong></td><td><strong>約1,336円/月</strong></td></tr>
+      </table>
+      <div class="result-box">
+        📊 <strong>実際の実績：</strong>2ヶ月継続した結果、月1,650円を達成。LINEマンガのゲージを多めに獲得できた月は上振れします。
+      </div>
+      <!-- TODO: 月間収益グラフのスクリーンショット or 自作グラフ画像 -->
+      <div class="img-placeholder"><span>📊</span>月間収益グラフ（実績データ）</div>
+
+      <hr>
+
+      <h2>アイテム活用：損益分岐から考える「買うべきアイテム」</h2>
+      <p>LINE WALKにはコインで購入できるアイテムがいくつかあります。感覚で買うのではなく、<strong>損益分岐（何日で元が取れるか）</strong>で判断するのがおすすめです。</p>
+
+      <h3>歩数アイテム「コニーと歩く」（月額2,000コイン）→ 最優先で買うべき</h3>
+      <p>通常600歩で貯まるボトルが、300歩で貯まるようになります。チケット5枚→ガチャ1回（期待値27.9コイン）の構造はそのまま。</p>
+      <!-- TODO: 歩数アイテム損益分岐グラフ画像 -->
+      <div class="img-placeholder"><span>📈</span>歩数アイテム損益分岐グラフ（graph_steps_new.png）</div>
+      <table>
+        <tr><th>歩数</th><th>アイテムなし</th><th>アイテムあり</th><th>日次増加</th><th>損益分岐</th></tr>
+        <tr><td>5,000歩</td><td>8ガチャ/日（223コイン）</td><td>16ガチャ/日（446コイン）</td><td>+223コイン/日</td><td><strong>9日目 ✅</strong></td></tr>
+        <tr><td>10,000歩</td><td>16ガチャ/日（446コイン）</td><td>20ガチャ/日（558コイン）※上限あり</td><td>+112コイン/日</td><td><strong>18日目 ✅</strong></td></tr>
+      </table>
+      <p>月額2,000コインを払っても、5,000歩の人なら9日で元が取れ、30日末に+4,696コインの黒字。<strong>歩数が少ない人ほど恩恵が大きい</strong>のが特徴です。</p>
+
+      <h3>ボトル上限+5（10,000コイン・一度だけ）→ コニーと組み合わせで検討</h3>
+      <p>デフォルトの上限は20個/日。コニーと歩くを使うと、10,000歩で33個分のガチャが発生しますが、上限20でキャップされます。ボトル上限+5（上限20→25）を購入すると、上限25まで回収可能に。</p>
+      <ul>
+        <li>追加コイン：+5ガチャ × 27.9 = <strong>+139.5コイン/日</strong></li>
+        <li>回収：10,000コイン ÷ 139.5 = <strong>約72日（2.4ヶ月）</strong> ✅</li>
+      </ul>
+      <div class="warn-box">
+        ⚠️ 2回目の購入（上限30）は+1ガチャしか増えず、回収に358日かかるため不要です。
+      </div>
+
+      <h3>移動アイテム「移動3倍」（月額2,000コイン）→ 通勤・移動が多い人向け</h3>
+      <p>移動によるゲージ充填が3倍速になります。</p>
+      <!-- TODO: 移動アイテム損益分岐グラフ画像 -->
+      <div class="img-placeholder"><span>📈</span>移動アイテム損益分岐グラフ（graph_move_new.png）</div>
+      <table>
+        <tr><th>移動量</th><th>アイテムなし</th><th>アイテムあり</th><th>損益分岐</th></tr>
+        <tr><td>少なめ（5,000歩相当）</td><td>0台/日</td><td>1台/日（+60コイン）</td><td>33日（30日内に回収できず）❌</td></tr>
+        <tr><td>多め（10,000歩相当）</td><td>1台/日</td><td>3台/日（+120コイン）</td><td><strong>17日目 ✅</strong></td></tr>
+      </table>
+      <p>電車通勤など実際に距離を移動している人向け。歩くだけではあまり恩恵がありません。</p>
+
+      <h3>車両上限の追加（10,000コイン×n回）→ 通勤族は要確認</h3>
+      <p>初期上限は3台。通勤などで1日に大量移動する場合、上限を超えた分がすべて消えます。</p>
+      <div class="advice-box">
+        <div class="advice-title">💡 週3日出社・片道5台以上の移動がある人の場合</div>
+        往復で約10〜11台分ゲージが発生します。上限3台では、毎月約6,000コイン以上を取りこぼしている可能性があります。上限を5〜6台まで引き上げると損失がゼロに（回収まで約7〜13ヶ月）。まず自分が1日何台分のゲージを獲得しているか確認してから判断しましょう。
+      </div>
+
+      <h3>アイテム優先度まとめ</h3>
+      <table>
+        <tr><th>アイテム</th><th>コスト</th><th>対象者</th><th>判定</th></tr>
+        <tr><td>コニーと歩く</td><td>月額2,000コイン</td><td>全員</td><td>✅ 即買い</td></tr>
+        <tr><td>ボトル上限+5（1回目）</td><td>10,000コイン</td><td>コニーあり・8,000歩以上</td><td>✅ おすすめ</td></tr>
+        <tr><td>移動3倍</td><td>月額2,000コイン</td><td>通勤など移動多め</td><td>✅ 10,000歩相当以上なら</td></tr>
+        <tr><td>車両上限追加</td><td>10,000コイン×n</td><td>通勤で大量移動する人</td><td>⚠️ 損失確認してから</td></tr>
+        <tr><td>ボトル上限+5（2回目以降）</td><td>10,000コイン</td><td>—</td><td>❌ 不要</td></tr>
+      </table>
+
+      <hr>
+
+      <h2>おすすめの始め方（初心者向け）</h2>
+      <ol>
+        <li><strong>STEP 1：LINE WALKをダウンロード</strong><br>LINEアカウントでログインするだけでOK。</li>
+        <li><strong>STEP 2：ポイゲの対応アプリを連携する</strong><br>チョッキンズなどLINEゲームを既に使っているなら、ポイゲ連携するだけで毎日コインが増える。</li>
+        <li><strong>STEP 3：LINEマンガのポイ活機能をオンにする</strong><br>LINEマンガアプリのポイ活機能を有効にするだけで、毎日780コイン以上が自動で貯まる。</li>
+        <li><strong>STEP 4：デイリービンゴを習慣化する</strong><br>朝・昼・夜の3回アプリを開くだけで全マス達成しやすくなる。</li>
+        <li><strong>STEP 5：コインが貯まったら「コニーと歩く」を購入</strong><br>5,000歩の人なら9日で元が取れる。最初に買うアイテムはこれ一択。</li>
+        <li><strong>STEP 6：コインは110,000以上貯めてからまとめて交換</strong><br>少しずつ交換するよりも、まとめて交換するほうがお得。</li>
+      </ol>
+
+      <hr>
+
+      <h2>注意点・デメリット</h2>
+      <ul>
+        <li><strong>広告視聴が多い：</strong>コインを効率よく貯めるには広告視聴が前提になる場面が多くあります。</li>
+        <li><strong>換金レートは低め：</strong>最大レートで1コイン＝0.001円。コツコツ積み上げる前提で取り組みましょう。</li>
+        <li><strong>デイリービンゴは起動頻度が必要：</strong>全マス達成には一日中こまめなアプリ起動が必要なため、生活スタイルによってはストレスになることも。</li>
+        <li><strong>案件は条件確認が必須：</strong>「ザクザク」などのアプリDL系案件は達成条件が厳しいものもあります。参加前に必ず確認を。</li>
+        <li><strong>ランキング・友達紹介はバレるリスクあり：</strong>ポイ活していることが友達に知られる可能性があります。</li>
+        <li><strong>LINEアカウントへの依存：</strong>LINEアカウントが停止・削除されると、貯めたコインも失うリスクがあります。</li>
+      </ul>
+
+      <hr>
+
+      <h2>まとめ</h2>
+      <p>LINE WALKは、LINEアプリを日常的に使っている人なら追加コストゼロで始められる優秀なポイ活ツールです。特に「チョッキンズ」「LINEマンガ」と組み合わせることで、月1,000〜1,600円以上も現実的な目標になります。</p>
+      <p>アイテムについては「損益分岐から考える」のがポイント。<strong>「コニーと歩く」はほぼ全員が元を取れる唯一のアイテムです。</strong>他のアイテムは自分の生活スタイルと照らし合わせて判断しましょう。</p>
+
+      <div class="disclaimer">
+        ※ 本記事の情報は2026年5月時点のものです。仕様は変更になる場合があります。収益は個人の実績であり、成果を保証するものではありません。
+      </div>
+
+    </div><!-- /.article-content -->
+
+  </main>
+
+  <!-- サイドバー -->
+  <aside class="sidebar">
+
+    <!-- 著者プロフィール -->
+    <div class="sidebar-card">
+      <p class="section-title">👤 著者プロフィール</p>
+      <img class="author-avatar" src="../icon.png" alt="ポイモル">
+      <div class="author-name">ポイモル</div>
+      <div class="author-subtitle">29歳・都内会社員</div>
+      <div class="author-catch">ポイ活 × 投資で<br>手出し0円でモルディブを目指す男</div>
+      <p class="author-bio">ポイ活歴4年以上。実際に使ったアプリのデータを正直に公開し、YouTubeやブログで発信中。</p>
+      <a href="#" class="author-link-btn yt">▶ YouTubeチャンネルを見る</a>
+      <a href="/" class="author-link-btn profile">← トップページへ</a>
+    </div>
+
+    <!-- モルディブメーター -->
+    <div class="sidebar-card">
+      <p class="section-title">🏝 モルディブメーター</p>
+      <div class="meter-label">
+        <span>現在の進捗</span>
+        <span style="font-weight:700;color:var(--teal)" id="meter-pct">3.2%</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="meter-fill"></div>
+      </div>
+      <div class="meter-note" id="meter-note">累計 32,000pt ／ 目標 1,000,000pt</div>
+    </div>
+
+    <!-- 関連記事 -->
+    <div class="sidebar-card">
+      <p class="section-title">📋 関連記事</p>
+      <a href="kartie-point.html" class="related-article">
+        <div class="related-icon">🎡</div>
+        <div class="related-title">カルティポイント 1,006回スピン検証｜1等確率・月収・再チャレンジの真実</div>
+      </a>
+    </div>
+
+    <!-- YouTubeチャンネル -->
+    <div class="sidebar-card" style="background: linear-gradient(135deg, #fff5f2, #fff0ea); border-color: #ffd4c2;">
+      <p class="section-title" style="border-color: var(--accent);">▶ YouTubeでも発信中</p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6;">実際の検証動画・月次の収支報告はYouTubeで公開中。</p>
+      <a href="#" class="yt-channel-btn">チャンネルを見る →</a>
+    </div>
+
+  </aside>
+</div>
+
+<!-- フッター -->
+<footer>
+  <p style="margin-bottom:8px">
+    <a href="/">ホーム</a> ／
+    <a href="#">プライバシーポリシー</a> ／
+    <a href="#">免責事項</a>
+  </p>
+  <p>© 2026 ポイモルブログ｜当サイトはアフィリエイト広告を利用しています</p>
+</footer>
+
+<script>
+  async function updateMaldivesMeter() {
+    const sheetId = '1sVYNqqg2ysLfiyTG_RbbTpBPpytwR2sOgMTCLEVgfOQ';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=ダッシュボード&range=B2`;
+    try {
+      const res = await fetch(url);
+      const text = await res.text();
+      const jsonStr = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1];
+      const json = JSON.parse(jsonStr);
+      const current = json.table.rows[0].c[0].v;
+      const target = 1000000;
+      const pct = (current / target * 100).toFixed(1);
+      document.getElementById('meter-fill').style.width = pct + '%';
+      document.getElementById('meter-pct').textContent = pct + '%';
+      document.getElementById('meter-note').textContent =
+        `累計 ${Math.round(current).toLocaleString()}pt ／ 目標 ${target.toLocaleString()}pt`;
+    } catch (e) {}
+  }
+  updateMaldivesMeter();
+</script>
+</body>
+</html>
