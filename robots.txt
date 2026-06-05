@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://poimoru-blog.satorunaoi0731.workers.dev/sitemap.xml
