@@ -1,3 +1,10 @@
+# OS / editor junk
+.DS_Store
+**/.DS_Store
+
+# 記事下書き（公開しない）
+articles/*.txt
+
 # wrangler files
 .wrangler
 .dev.vars*
