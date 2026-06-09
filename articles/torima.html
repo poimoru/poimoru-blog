@@ -48,13 +48,14 @@
     html { scroll-behavior:smooth; }
     body { font-family:'Noto Sans JP',sans-serif; color:var(--text); background:var(--bg); line-height:1.7; font-size:15px; }
     header { background:var(--white); border-bottom:3px solid var(--teal); padding:0 16px; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-    .header-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:60px; }
+    .header-inner { max-width:1140px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:60px; }
     .site-title { font-size:20px; font-weight:700; color:var(--teal); text-decoration:none; letter-spacing:-0.5px; }
+    .hamburger { display:none; background:none; border:none; font-size:24px; line-height:1; color:var(--teal); cursor:pointer; padding:4px 8px; }
     nav a { color:var(--text-muted); text-decoration:none; font-size:13px; margin-left:20px; font-weight:500; }
     nav a.yt-nav { color:var(--accent); font-weight:700; }
-    .breadcrumb { max-width:900px; margin:0 auto; padding:10px 16px; font-size:12px; color:var(--text-muted); }
+    .breadcrumb { max-width:1140px; margin:0 auto; padding:10px 16px; font-size:12px; color:var(--text-muted); }
     .breadcrumb a { color:var(--teal); text-decoration:none; } .breadcrumb span { margin:0 6px; }
-    .container { max-width:900px; margin:0 auto; padding:0 16px 40px; display:grid; grid-template-columns:1fr 260px; gap:24px; }
+    .container { max-width:1140px; margin:0 auto; padding:0 16px 40px; display:grid; grid-template-columns:minmax(0,1fr) 308px; gap:32px; }
     .article-header { background:var(--white); border-radius:10px; border:1px solid var(--border); padding:24px; margin-bottom:24px; }
     .article-badge { display:inline-block; background:var(--teal); color:#fff; font-size:11px; font-weight:700; padding:3px 10px; border-radius:3px; margin-bottom:12px; }
     .article-badge.orange { background:var(--accent); } .article-badge.new { background:#e91e63; }
@@ -98,7 +99,9 @@
     .img-placeholder { background:#f0f0f0; border:2px dashed #ccc; border-radius:8px; height:200px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#999; font-size:13px; margin:16px 0; }
     .img-placeholder span { font-size:28px; margin-bottom:8px; }
     .disclaimer { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:10px 14px; font-size:12px; color:#7a6500; margin-top:24px; }
+    .sidebar { display:flex; flex-direction:column; }
     .sidebar-card { background:var(--white); border-radius:10px; border:1px solid var(--border); padding:16px; margin-bottom:16px; }
+    .sidebar-card.sticky-card { order:99; position:sticky; top:76px; z-index:5; }
     .section-title { font-size:14px; font-weight:700; border-left:4px solid var(--teal); padding-left:10px; margin-bottom:14px; }
     .author-avatar { width:70px; height:70px; border-radius:50%; margin:0 auto 10px; display:block; object-fit:cover; border:3px solid var(--teal-light); }
     .author-name { text-align:center; font-weight:700; font-size:15px; margin-bottom:2px; }
@@ -118,7 +121,8 @@
     .related-title { font-size:12px; font-weight:700; line-height:1.4; }
     footer { background:#1a1a1a; color:#aaa; text-align:center; padding:24px 16px; font-size:12px; margin-top:40px; }
     footer a { color:var(--teal); text-decoration:none; }
-    @media (max-width:680px){ .container{grid-template-columns:1fr; padding:0 12px 32px;} nav a:not(.yt-nav){display:none;} .article-header h1{font-size:18px;} .article-content{padding:16px;} .article-content h2{font-size:16px;} .sidebar{order:-1;} .sidebar-card:not(:first-child){display:none;} }
+    @media (max-width:880px){ .container{grid-template-columns:1fr;} .sidebar{order:2; margin-top:8px;} .sidebar-card.sticky-card{position:static;} }
+    @media (max-width:680px){ .container{padding:0 12px 32px;} .hamburger{display:block;} nav#navMenu{display:none; position:absolute; top:60px; left:0; right:0; flex-direction:column; background:var(--white); border-bottom:1px solid var(--border); box-shadow:0 6px 12px rgba(0,0,0,0.08);} nav#navMenu.open{display:flex;} nav#navMenu a{margin:0; padding:14px 16px; border-top:1px solid var(--border); font-size:14px;} .article-header h1{font-size:18px;} .article-content{padding:16px;} .article-content h2{font-size:16px;} }
   </style>
 </head>
 <body>
@@ -126,7 +130,8 @@
 <header>
   <div class="header-inner">
     <a href="/" class="site-title">歩いて<span>モルディブへ行く男</span></a>
-    <nav><a href="/">検証レポート</a><a href="/">アプリ紹介</a><a href="#" class="yt-nav">▶ YouTube</a></nav>
+    <nav id="navMenu"><a href="/">ホーム</a><a href="/">アプリ一覧</a><a href="#" class="yt-nav">▶ YouTube</a></nav>
+    <button class="hamburger" aria-label="メニューを開く" onclick="document.getElementById('navMenu').classList.toggle('open')">☰</button>
   </div>
 </header>
 
@@ -339,7 +344,7 @@
       <a href="/" class="author-link-btn profile">← トップページへ</a>
     </div>
 
-    <div class="sidebar-card" style="background:linear-gradient(135deg,#fff5f2,#fff0ea); border-color:#ffd4c2;">
+    <div class="sidebar-card sticky-card" style="background:linear-gradient(135deg,#fff5f2,#fff0ea); border-color:#ffd4c2;">
       <p class="section-title" style="border-color:var(--accent);">🎁 招待コード</p>
       <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">入力で5,000マイル（約50円分）</p>
       <!-- TODO: 招待コードを入力 -->
