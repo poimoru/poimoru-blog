@@ -25,469 +25,20 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal: #3A9B96;
-      --teal-light: #e8f5f4;
-      --teal-dark: #2d7a76;
-      --text: #1a1a1a;
-      --text-muted: #666;
-      --border: #e5e5e5;
-      --bg: #f8f9fa;
-      --white: #ffffff;
-      --accent: #ff6b35;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    /* ヘッダー */
-    header {
-      background: var(--white);
-      border-bottom: 3px solid var(--teal);
-      padding: 0 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .header-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-    }
-    .site-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--teal);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .site-title span {
-      color: var(--teal);
-    }
-    nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 13px;
-      margin-left: 20px;
-      font-weight: 500;
-    }
-    nav a:hover { color: var(--teal); }
-    nav a.yt-nav {
-      color: var(--accent);
-      font-weight: 700;
-    }
-    nav a.yt-nav:hover { opacity: 0.8; }
-
-    /* ヒーロー */
-    .hero {
-      position: relative;
-      background: url('maldives.jpg') center center / cover no-repeat;
-      color: white;
-      padding: 60px 16px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(30, 90, 87, 0.62);
-    }
-    .hero > * {
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-    .hero p {
-      font-size: 14px;
-      opacity: 0.9;
-      max-width: 480px;
-      margin: 0 auto 20px;
-    }
-    .yt-btn {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 24px;
-      border-radius: 99px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .yt-btn:hover { opacity: 0.85; }
-    .yt-channel-btn {
-      display: block;
-      background: var(--accent);
-      color: white;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 9px;
-      border-radius: 6px;
-      text-decoration: none;
-      text-align: center;
-      transition: opacity 0.2s;
-    }
-    .yt-channel-btn:hover { opacity: 0.85; }
-
-    /* メインレイアウト */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 24px 16px;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 24px;
-    }
-    /* ===== レスポンシブ ===== */
-
-    /* タブレット（680px以下）: 1カラムに切り替え */
-    @media (max-width: 680px) {
-      .container {
-        grid-template-columns: 1fr;
-        padding: 16px 12px;
-        gap: 16px;
-      }
-
-      /* ナビ: テキストリンクを隠してYouTubeボタンのみ残す */
-      nav a:not(.yt-nav) { display: none; }
-      nav a.yt-nav { margin-left: 0; }
-
-      /* ヒーロー */
-      .hero { padding: 36px 16px; }
-      .hero h1 { font-size: 18px; }
-      .hero p { font-size: 13px; }
-
-      /* 注目カード */
-      .featured-thumb { height: 120px; font-size: 36px; }
-      .featured-body h2 { font-size: 15px; }
-
-      /* 記事カード */
-      .article-icon { width: 44px; height: 44px; font-size: 20px; }
-      .article-info h3 { font-size: 13px; }
-
-      /* サイドバー: 著者とYouTubeのみ表示、他は非表示 */
-      .sidebar { display: block; }
-      .sidebar-card.hide-mobile { display: none; }
-    }
-
-    /* スマホ小（400px以下）: さらに細かく調整 */
-    @media (max-width: 400px) {
-      .site-title { font-size: 17px; }
-      .hero h1 { font-size: 16px; }
-      .featured-body { padding: 12px; }
-      .article-card { padding: 12px 10px; }
-      .disclaimer { font-size: 11px; }
-    }
-
-    /* セクションタイトル */
-    .section-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text);
-      border-left: 4px solid var(--teal);
-      padding-left: 10px;
-      margin-bottom: 16px;
-    }
-
-    /* 注目記事（大カード） */
-    .featured-card {
-      background: var(--white);
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      margin-bottom: 24px;
-      transition: box-shadow 0.2s;
-    }
-    .featured-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-    .featured-thumb {
-      background: linear-gradient(135deg, var(--teal-light), #d0eeec);
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-    }
-    .featured-body { padding: 16px; }
-    .card-badge {
-      display: inline-block;
-      background: var(--teal);
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-bottom: 8px;
-    }
-    .card-badge.orange { background: var(--accent); }
-    .featured-body h2 {
-      font-size: 17px;
-      font-weight: 700;
-      line-height: 1.45;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .featured-body p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-    .result-box {
-      background: var(--teal-light);
-      border-left: 3px solid var(--teal);
-      border-radius: 4px;
-      padding: 10px 12px;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-    .result-box strong { color: var(--teal-dark); }
-    .read-more {
-      display: inline-block;
-      color: var(--teal);
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      border: 1.5px solid var(--teal);
-      padding: 5px 14px;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-    .read-more:hover {
-      background: var(--teal);
-      color: white;
-    }
-
-    /* 記事リスト */
-    .article-list { display: flex; flex-direction: column; gap: 12px; }
-    .article-card {
-      background: var(--white);
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      padding: 14px;
-      display: flex;
-      gap: 12px;
-      transition: box-shadow 0.2s;
-      text-decoration: none;
-      color: inherit;
-    }
-    .article-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-    .article-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--teal-light);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      flex-shrink: 0;
-    }
-    .article-info { flex: 1; min-width: 0; }
-    .article-info h3 {
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.4;
-      margin-bottom: 4px;
-    }
-    .article-meta {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .tag {
-      display: inline-block;
-      background: var(--teal-light);
-      color: var(--teal-dark);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 3px;
-      margin-right: 4px;
-    }
-
-    /* サイドバー */
-    .sidebar {}
-    .sidebar-card {
-      background: var(--white);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-
-    /* 著者プロフィール */
-    .author-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 10px;
-      display: block;
-      object-fit: cover;
-      border: 3px solid var(--teal-light);
-    }
-    .author-name {
-      text-align: center;
-      font-weight: 700;
-      font-size: 16px;
-      margin-bottom: 2px;
-    }
-    .author-subtitle {
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-    .author-catch {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--teal-dark);
-      background: var(--teal-light);
-      border-radius: 4px;
-      padding: 5px 8px;
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    .author-bio {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-    .author-bio a {
-      color: var(--teal);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .author-links {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .author-link-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 7px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .author-link-btn.yt {
-      background: var(--accent);
-      color: white;
-    }
-    .author-link-btn.profile {
-      background: var(--bg);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .author-link-btn:hover { opacity: 0.8; }
-
-    /* 目標メーター */
-    .meter-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
-    .meter-bar {
-      background: var(--border);
-      border-radius: 99px;
-      height: 12px;
-      overflow: hidden;
-      margin-bottom: 6px;
-    }
-    .meter-fill {
-      background: linear-gradient(90deg, var(--teal), var(--accent));
-      height: 100%;
-      border-radius: 99px;
-      width: 3.2%;
-      transition: width 1s ease;
-    }
-    .meter-note {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: right;
-    }
-
-    /* カテゴリ */
-    .category-list { display: flex; flex-direction: column; gap: 6px; }
-    .category-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 7px 10px;
-      background: var(--bg);
-      border-radius: 6px;
-      font-size: 13px;
-      text-decoration: none;
-      color: var(--text);
-      transition: background 0.15s;
-    }
-    .category-item:hover { background: var(--teal-light); }
-    .category-count {
-      background: var(--teal);
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 1px 7px;
-      border-radius: 99px;
-    }
-
-    /* フッター */
-    footer {
-      background: #1a1a1a;
-      color: #aaa;
-      text-align: center;
-      padding: 24px 16px;
-      font-size: 12px;
-      margin-top: 40px;
-    }
-    footer a { color: var(--teal); text-decoration: none; }
-
-    /* 注意書き */
-    .disclaimer {
-      background: #fff8e1;
-      border: 1px solid #ffe082;
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-size: 12px;
-      color: #7a6500;
-      margin-bottom: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
 <!-- ヘッダー -->
 <header>
   <div class="header-inner">
-    <a href="/" class="site-title">歩いて<span>モルディブへ行く男</span></a>
-    <nav>
+    <a href="/" class="site-title"><img src="/icon.png" alt="">歩いてモルディブへ行く男</a>
+    <nav id="navMenu">
       <a href="/">ホーム</a>
       <a href="/">アプリ一覧</a>
       <a href="#" class="yt-nav">▶ YouTube</a>
     </nav>
+    <button class="hamburger" aria-label="メニューを開く">☰</button>
   </div>
 </header>
 
@@ -495,6 +46,11 @@
 <div class="hero">
   <h1>ポイ活の実体験データを、<br>正直に公開します。</h1>
   <p>副業は怖くても、ポイ活ならできる。<br>検証データをブログ＆YouTubeで発信中。</p>
+  <div class="hero-stats">
+    <span class="hero-stat">🎰 ガチャ実測 3.4万回超</span>
+    <span class="hero-stat">📊 全データ公開</span>
+    <span class="hero-stat">🏝 目標：モルディブ100万pt</span>
+  </div>
   <a href="#" class="yt-btn">▶ YouTubeチャンネルを見る</a>
 </div>
 
@@ -502,7 +58,7 @@
 <div class="container">
   <main>
 
-    <div class="disclaimer">
+    <div class="disclaimer" style="margin-top:0">
       ⚠️ 当ブログは実際に使用したアプリ・サービスの体験レポートです。収益は個人の実績であり、成果を保証するものではありません。
     </div>
 
@@ -574,17 +130,17 @@
         </div>
       </a>
 
-      <a href="#" class="article-card">
+      <div class="article-card coming-soon">
         <div class="article-icon">📊</div>
         <div class="article-info">
           <h3>移動系ポイ活アプリ5選を比較｜トリマ・Miles・aruku&amp;を実際に使った結論</h3>
           <div class="article-meta">
-            <span class="tag">検証レポート</span>
+            <span class="tag">近日公開</span>
             <span class="tag">比較</span>
-            2026年5月 掲載
+            執筆中です
           </div>
         </div>
-      </a>
+      </div>
 
     </div>
   </main>
@@ -607,31 +163,31 @@
     </div>
 
     <!-- モルディブメーター -->
-    <div class="sidebar-card hide-mobile">
+    <div class="sidebar-card">
       <p class="section-title">🏝 モルディブメーター</p>
       <div class="meter-label">
         <span>現在の進捗</span>
-        <span style="font-weight:700;color:var(--teal)">3.2%</span>
+        <span id="meter-pct" style="font-weight:700;color:var(--teal)">--%</span>
       </div>
       <div class="meter-bar">
-        <div class="meter-fill"></div>
+        <div class="meter-fill" id="meter-fill"></div>
       </div>
-      <div class="meter-note">累計 32,000pt ／ 目標 1,000,000pt</div>
+      <div class="meter-note" id="meter-note">読み込み中…</div>
     </div>
 
     <!-- カテゴリ -->
-    <div class="sidebar-card hide-mobile">
+    <div class="sidebar-card">
       <p class="section-title">🗂 カテゴリ</p>
       <div class="category-list">
-        <a href="#" class="category-item">📊 検証レポート <span class="category-count">5</span></a>
-        <a href="#" class="category-item">📱 アプリ紹介 <span class="category-count">3</span></a>
-        <a href="#" class="category-item">📅 月次報告 <span class="category-count">2</span></a>
+        <a href="/" class="category-item">📊 検証レポート <span class="category-count">5</span></a>
+        <a href="/" class="category-item">📱 アプリ紹介 <span class="category-count">3</span></a>
+        <a href="/" class="category-item">📅 月次報告 <span class="category-count">2</span></a>
       </div>
     </div>
 
     <!-- YouTubeチャンネル -->
     <div class="sidebar-card" style="background: linear-gradient(135deg, #fff5f2, #fff0ea); border-color: #ffd4c2;">
-      <p class="section-title" style="border-color: var(--accent); color: var(--text);">▶ YouTubeでも発信中</p>
+      <p class="section-title" style="border-color: var(--accent);">▶ YouTubeでも発信中</p>
       <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6;">月次の収支報告・ポイント運用レースなど、ブログより詳しい検証動画を公開中。</p>
       <a href="#" class="yt-channel-btn">チャンネルを見る →</a>
     </div>
@@ -642,35 +198,13 @@
 <!-- フッター -->
 <footer>
   <p style="margin-bottom:8px">
-    <a href="#">プロフィール</a> ／
+    <a href="/">プロフィール</a> ／
     <a href="/privacy.html">プライバシーポリシー</a> ／
     <a href="/disclaimer.html">免責事項</a>
   </p>
   <p>© 2026 ポイモルブログ｜当サイトはアフィリエイト広告を利用しています</p>
 </footer>
 
-<script>
-  async function updateMaldivesMeter() {
-    const sheetId = '1sVYNqqg2ysLfiyTG_RbbTpBPpytwR2sOgMTCLEVgfOQ';
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=ダッシュボード&range=B2`;
-    try {
-      const res = await fetch(url);
-      const text = await res.text();
-      const jsonStr = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1];
-      const json = JSON.parse(jsonStr);
-      const current = json.table.rows[0].c[0].v;
-      const target = 1000000;
-      const pct = (current / target * 100).toFixed(1);
-
-      document.querySelector('.meter-fill').style.width = pct + '%';
-      document.querySelector('.meter-label span:last-child').textContent = pct + '%';
-      document.querySelector('.meter-note').textContent =
-        `累計 ${Math.round(current).toLocaleString()}pt ／ 目標 ${target.toLocaleString()}pt`;
-    } catch (e) {
-      // フェッチ失敗時はハードコード値のまま表示
-    }
-  }
-  updateMaldivesMeter();
-</script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
