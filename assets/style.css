@@ -806,7 +806,9 @@ footer a:hover { text-decoration: underline; }
 
 /* ============ レスポンシブ ============ */
 @media (max-width: 880px) {
-  .container { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr) が必須: 単なる1frだとテーブルの white-space:nowrap 等の
+     min-content幅にグリッド列が引っ張られて横スクロールが発生する（2026-07-09実機で発覚） */
+  .container { grid-template-columns: minmax(0, 1fr); }
   .sidebar { order: 2; margin-top: 8px; }
   .sidebar-card.sticky-card { position: static; }
 }
