@@ -14,6 +14,7 @@
   <meta property="og:image" content="https://poimoru-blog.satorunaoi0731.workers.dev/articles/images/og-odipo.png">
   <meta property="og:site_name" content="歩いてモルディブへ行く男">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#176b67">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org","@type": "Article",
@@ -36,27 +37,26 @@
     ]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/style.css?v=3">
 </head>
 <body>
+<a class="skip-link" href="#main-content">本文へスキップ</a>
 
 <header>
   <div class="header-inner">
-    <a href="/" class="site-title"><img src="/icon.png" alt="">歩いてモルディブへ行く男</a>
-    <nav id="navMenu"><a href="/">ホーム</a><a href="/">アプリ一覧</a><a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" class="yt-nav" target="_blank" rel="noopener">▶ YouTube</a></nav>
-    <button class="hamburger" aria-label="メニューを開く">☰</button>
+    <a href="/" class="site-title"><img src="/icon.png" width="256" height="248" alt="">歩いてモルディブへ行く男</a>
+    <nav id="navMenu" aria-label="メインナビゲーション"><a href="/">ホーム</a><a href="/#articles" aria-current="page">アプリ一覧</a><a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" class="yt-nav" target="_blank" rel="noopener">▶ YouTube</a></nav>
+    <button class="hamburger" type="button" aria-label="メニューを開く" aria-controls="navMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
 <div class="breadcrumb"><a href="/">ホーム</a><span>›</span><a href="/">検証レポート</a><span>›</span>おぢポ完全検証</div>
 
 <div class="container">
-  <main>
+  <main id="main-content" tabindex="-1">
     <div class="article-header">
       <!-- TODO: 実際のサムネイル画像に差し替え -->
-      <div class="article-thumbnail" style="background:linear-gradient(135deg,#fff0e0,#ffe0c2)">🧓</div>
+      <div class="article-thumbnail">🧓</div>
       <span class="article-badge new">NEW</span>
       <span class="article-badge">歩数系ポイ活</span>
       <span class="article-badge orange">実測975回</span>
@@ -77,7 +77,7 @@
         この記事は、筆者が<strong>スクラッチ975回・ボトル277回</strong>を実際に引いて全記録した一次データに基づき、稼ぎ方と本当の期待値を正直に解説します。
       </p>
 
-      <nav class="toc">
+      <nav class="toc" aria-label="記事の目次">
         <p class="toc-title">📑 目次</p>
         <ol>
           <li><a href="#code">招待コードでお得に始める（330pt）</a></li>
@@ -98,7 +98,7 @@
       <div class="invite-box">
         <div class="invite-title">🎁 招待コードで330ポイント（約37円分）</div>
         <div class="invite-code" id="inviteCode">XLJ1l9S3</div>
-        <button class="copy-btn" onclick="copyInvite()">📋 コードをコピー</button>
+        <button class="copy-btn" type="button">コードをコピー</button>
         <p class="invite-steps">使い方：① おぢポをDL → ② 新規登録 → ③「招待コード」欄に貼り付け</p>
         <p style="font-size:11px;color:var(--text-muted)">※利用で登録するあなたに330ポイント、筆者にもポイントが入ります。</p>
       </div>
@@ -148,7 +148,7 @@
 
       <h3>スクラッチの当選確率（実測975回）</h3>
       <figure>
-        <img src="images/odipo-scratch.png" alt="おぢポ スクラッチ当選確率（実測975回）の実測グラフ" style="width:100%; border-radius:8px; border:1px solid #e5e5e5;">
+        <img src="images/odipo-scratch.png" width="1026" height="583" loading="lazy" decoding="async" alt="おぢポ スクラッチ当選確率（実測975回）の実測グラフ" style="width:100%; height:auto; border-radius:8px; border:1px solid #e5e5e5;">
         <figcaption style="font-size:12px; color:#666; text-align:center; margin-top:6px;">スクラッチ975回の実測集計（筆者調べ）</figcaption>
       </figure>
       <table>
@@ -167,7 +167,7 @@
 
       <h3>ボトルの実測（277回）</h3>
       <figure>
-        <img src="images/odipo-bottle.png" alt="おぢポ ボトルのポイント分布（実測277回）の実測グラフ" style="width:100%; border-radius:8px; border:1px solid #e5e5e5;">
+        <img src="images/odipo-bottle.png" width="1026" height="583" loading="lazy" decoding="async" alt="おぢポ ボトルのポイント分布（実測277回）の実測グラフ" style="width:100%; height:auto; border-radius:8px; border:1px solid #e5e5e5;">
         <figcaption style="font-size:12px; color:#666; text-align:center; margin-top:6px;">ボトル277回の実測集計（筆者調べ）</figcaption>
       </figure>
       <table>
@@ -279,7 +279,7 @@
   <aside class="sidebar">
     <div class="sidebar-card">
       <p class="section-title">👤 著者プロフィール</p>
-      <img class="author-avatar" src="../icon.png" alt="ポイモル">
+      <img class="author-avatar" src="../icon.png" width="256" height="248" loading="lazy" decoding="async" alt="ポイモル">
       <div class="author-name">ポイモル</div>
       <div class="author-subtitle">29歳・都内会社員</div>
       <div class="author-catch">ポイ活 × 投資で<br>手出し0円でモルディブを目指す男</div>
@@ -291,14 +291,14 @@
     <div class="sidebar-card sticky-card" style="background:linear-gradient(135deg,#fff5f2,#fff0ea); border-color:#ffd4c2;">
       <p class="section-title" style="border-color:var(--accent);">🎁 招待コード</p>
       <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">入力で330ポイント（約37円分）</p>
-      <div style="font-size:16px; font-weight:700; text-align:center; letter-spacing:2px; background:#fff; border:1.5px dashed var(--accent); border-radius:4px; padding:8px;">XLJ1l9S3</div>
+      <div style="font-size:16px; font-weight:700; text-align:center; letter-spacing:0; background:#fff; border:1.5px dashed var(--accent); border-radius:4px; padding:8px;">XLJ1l9S3</div>
       <p style="font-size:10px; color:var(--text-muted); margin-top:6px;">※利用で登録者に330pt、筆者にもポイントが入ります</p>
     </div>
 
     <div class="sidebar-card">
       <p class="section-title">🏝 モルディブメーター</p>
       <div class="meter-label"><span>現在の進捗</span><span style="font-weight:700;color:var(--teal)" id="meter-pct">3.2%</span></div>
-      <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
+      <div class="meter-bar" role="progressbar" aria-label="モルディブ旅行資金の達成率" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter-fill" id="meter-fill"></div></div>
       <div class="meter-note" id="meter-note">累計 32,000pt ／ 目標 1,000,000pt</div>
     </div>
 
@@ -331,6 +331,6 @@
   <p>© 2026 ポイモルブログ｜当サイトはアフィリエイト広告を利用しています</p>
 </footer>
 
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=3" defer></script>
 </body>
 </html>

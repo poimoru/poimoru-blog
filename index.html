@@ -14,6 +14,7 @@
   <meta property="og:image" content="https://poimoru-blog.satorunaoi0731.workers.dev/maldives.jpg">
   <meta property="og:site_name" content="歩いてモルディブへ行く男">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#176b67">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -23,22 +24,22 @@
     "url": "https://poimoru-blog.satorunaoi0731.workers.dev/"
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preload" href="/maldives.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="/assets/style.css?v=3">
 </head>
 <body>
+<a class="skip-link" href="#main-content">本文へスキップ</a>
 
 <!-- ヘッダー -->
 <header>
   <div class="header-inner">
-    <a href="/" class="site-title"><img src="/icon.png" alt="">歩いてモルディブへ行く男</a>
-    <nav id="navMenu">
-      <a href="/">ホーム</a>
-      <a href="/">アプリ一覧</a>
+    <a href="/" class="site-title"><img src="/icon.png" width="256" height="248" alt="">歩いてモルディブへ行く男</a>
+    <nav id="navMenu" aria-label="メインナビゲーション">
+      <a href="/" aria-current="page">ホーム</a>
+      <a href="/#articles">アプリ一覧</a>
       <a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" class="yt-nav" target="_blank" rel="noopener">▶ YouTube</a>
     </nav>
-    <button class="hamburger" aria-label="メニューを開く">☰</button>
+    <button class="hamburger" type="button" aria-label="メニューを開く" aria-controls="navMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -56,7 +57,7 @@
 
 <!-- メインコンテンツ -->
 <div class="container">
-  <main>
+  <main id="main-content" tabindex="-1">
 
     <div class="disclaimer" style="margin-top:0">
       ⚠️ 当ブログは実際に使用したアプリ・サービスの体験レポートです。収益は個人の実績であり、成果を保証するものではありません。
@@ -65,7 +66,6 @@
     <!-- 注目記事 -->
     <p class="section-title">📌 注目の検証記事</p>
     <div class="featured-card">
-      <div class="featured-thumb">🎡</div>
       <div class="featured-body">
         <span class="card-badge" style="background:#e91e63">NEW</span>
         <span class="card-badge">健康系ポイ活</span>
@@ -79,7 +79,7 @@
     </div>
 
     <!-- 記事一覧 -->
-    <p class="section-title">📋 最新の検証レポート</p>
+    <p class="section-title" id="articles">📋 最新の検証レポート</p>
     <div class="article-list">
 
       <a href="articles/torima.html" class="article-card">
@@ -151,14 +151,13 @@
     <!-- 著者プロフィール -->
     <div class="sidebar-card">
       <p class="section-title">👤 著者プロフィール</p>
-      <img class="author-avatar" src="icon.png" alt="ポイモル">
+      <img class="author-avatar" src="icon.png" width="256" height="248" loading="lazy" decoding="async" alt="ポイモル">
       <div class="author-name">ポイモル</div>
       <div class="author-subtitle">29歳・都内会社員</div>
       <div class="author-catch">ポイ活 × 投資で<br>手出し0円でモルディブを目指す男</div>
       <p class="author-bio">ポイ活歴4年以上。副業は怖くてできないけど、ポイ活ならできそう──そう思って始めました。実際に使ったアプリのデータを正直に公開し、<a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" target="_blank" rel="noopener">YouTubeやブログ</a>で発信中。</p>
       <div class="author-links">
         <a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" class="author-link-btn yt" target="_blank" rel="noopener">▶ YouTubeチャンネルを見る</a>
-        <a href="#" class="author-link-btn profile">詳しいプロフィール →</a>
       </div>
     </div>
 
@@ -169,7 +168,7 @@
         <span>現在の進捗</span>
         <span id="meter-pct" style="font-weight:700;color:var(--teal)">--%</span>
       </div>
-      <div class="meter-bar">
+      <div class="meter-bar" role="progressbar" aria-label="モルディブ旅行資金の達成率" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="meter-fill" id="meter-fill"></div>
       </div>
       <div class="meter-note" id="meter-note">読み込み中…</div>
@@ -205,6 +204,6 @@
   <p>© 2026 ポイモルブログ｜当サイトはアフィリエイト広告を利用しています</p>
 </footer>
 
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=3" defer></script>
 </body>
 </html>
