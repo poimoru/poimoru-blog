@@ -1,0 +1,16 @@
+# Publish only the static files the blog needs.
+*
+!/index.html
+!/privacy.html
+!/disclaimer.html
+!/robots.txt
+!/sitemap.xml
+!/icon.png
+!/maldives.jpg
+!/assets/
+!/assets/site.js
+!/assets/style.css
+!/articles/
+!/articles/*.html
+!/articles/images/
+!/articles/images/*.png
