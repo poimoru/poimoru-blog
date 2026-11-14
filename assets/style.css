@@ -30,7 +30,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Sans", "Meiryo", sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.8;
@@ -884,8 +884,6 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
-    "Yu Gothic", "Meiryo", sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.85;
