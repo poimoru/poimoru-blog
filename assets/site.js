@@ -2,8 +2,6 @@
 (function () {
   'use strict';
 
-  var lastFocusedElement = null;
-
   function setNav(open) {
     var nav = document.getElementById('navMenu');
     var button = document.querySelector('.hamburger');
@@ -32,6 +30,20 @@
       if (!nav.classList.contains('open')) return;
       if (!nav.contains(event.target) && !button.contains(event.target)) setNav(false);
     });
+
+    var header = nav.closest('.site-header');
+    if (!header) return;
+    var lastY = Math.max(0, window.scrollY);
+    window.addEventListener('scroll', function () {
+      var y = Math.max(0, window.scrollY);
+      var delta = y - lastY;
+      if (y <= 64 || delta < -5 || nav.classList.contains('open')) {
+        header.classList.remove('is-hidden');
+      } else if (y > 128 && delta > 5) {
+        header.classList.add('is-hidden');
+      }
+      if (Math.abs(delta) > 5 || y <= 64) lastY = y;
+    }, { passive: true });
   }
 
   function setCopyStatus(message) {
@@ -51,32 +63,36 @@
     var codeElement = document.getElementById('inviteCode');
     if (!codeElement || !button) return;
 
-    var original = button.textContent;
+    var label = button.querySelector('[data-copy-label]') || button;
+    var original = label.textContent;
+    if (button.dataset.copying) return;
+    button.dataset.copying = 'true';
     try {
       await navigator.clipboard.writeText(codeElement.textContent.trim());
-      button.textContent = 'コピーしました';
+      label.textContent = 'コピーしました';
       setCopyStatus('招待コードをコピーしました');
     } catch (error) {
-      button.textContent = 'コピーできませんでした';
+      label.textContent = 'コピーできませんでした';
       setCopyStatus('招待コードをコピーできませんでした');
     }
     window.setTimeout(function () {
-      button.textContent = original;
+      label.textContent = original;
+      delete button.dataset.copying;
     }, 1600);
   }
 
   function setupCopyButtons() {
-    document.querySelectorAll('.copy-btn').forEach(function (button) {
-      button.removeAttribute('onclick');
-      button.addEventListener('click', function () {
-        copyInvite(button);
-      });
+    document.querySelectorAll('.copy-btn[onclick]').forEach(button => button.removeAttribute('onclick'));
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('.copy-btn');
+      if (button) copyInvite(button);
     });
   }
 
   async function updateMaldivesMeter() {
     var fill = document.getElementById('meter-fill') || document.querySelector('.meter-fill');
-    if (!fill) return;
+    var progress = document.getElementById('catalog-meter');
+    if (!fill && !progress) return;
 
     var sheetId = '1sVYNqqg2ysLfiyTG_RbbTpBPpytwR2sOgMTCLEVgfOQ';
     var url = 'https://docs.google.com/spreadsheets/d/' + sheetId +
@@ -91,13 +107,16 @@
       var match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/);
       if (!match) throw new Error('meter response invalid');
       var json = JSON.parse(match[1]);
-      var current = Number(json.table.rows[0].c[0].v);
+      var current = json.table.rows[0].c[0].v;
       if (!Number.isFinite(current)) throw new Error('meter value invalid');
 
       var target = 1000000;
-      var pct = Math.min(100, current / target * 100).toFixed(1);
-      fill.style.width = pct + '%';
-      fill.parentElement.setAttribute('aria-valuenow', pct);
+      var pct = Math.min(100, Math.max(0, current / target * 100)).toFixed(1);
+      if (progress) progress.value = pct;
+      if (fill) {
+        fill.style.width = pct + '%';
+        fill.parentElement.setAttribute('aria-valuenow', pct);
+      }
 
       var pctElement = document.getElementById('meter-pct') ||
         document.querySelector('.meter-label span:last-child');
@@ -106,7 +125,7 @@
       var note = document.getElementById('meter-note') || document.querySelector('.meter-note');
       if (note) {
         note.textContent = '累計 ' + Math.round(current).toLocaleString() +
-          'pt ／ 目標 ' + target.toLocaleString() + 'pt';
+          '円 ／ 目標 ' + target.toLocaleString() + '円';
       }
     } catch (error) {
       var noteElement = document.getElementById('meter-note') || document.querySelector('.meter-note');
@@ -131,112 +150,6 @@
     });
   }
 
-  function closeToc(overlay, fab) {
-    overlay.hidden = true;
-    overlay.classList.remove('open');
-    document.body.classList.remove('modal-open');
-    fab.setAttribute('aria-expanded', 'false');
-    if (lastFocusedElement) lastFocusedElement.focus();
-  }
-
-  function openToc(overlay, sheet, fab) {
-    lastFocusedElement = document.activeElement;
-    overlay.hidden = false;
-    overlay.classList.add('open');
-    document.body.classList.add('modal-open');
-    fab.setAttribute('aria-expanded', 'true');
-    var closeButton = sheet.querySelector('.toc-close');
-    if (closeButton) closeButton.focus();
-  }
-
-  function trapDialogFocus(event, sheet, overlay, fab) {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      closeToc(overlay, fab);
-      return;
-    }
-    if (event.key !== 'Tab') return;
-
-    var focusable = Array.from(sheet.querySelectorAll('a[href], button:not([disabled])'));
-    if (!focusable.length) return;
-    var first = focusable[0];
-    var last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
-  }
-
-  function buildFloatingToc() {
-    var content = document.querySelector('.article-content');
-    if (!content) return;
-    var headings = content.querySelectorAll('h2[id]');
-    if (headings.length < 2) return;
-
-    var fab = document.createElement('button');
-    fab.className = 'toc-fab';
-    fab.type = 'button';
-    fab.textContent = '目次';
-    fab.setAttribute('aria-label', '記事の目次を開く');
-    fab.setAttribute('aria-expanded', 'false');
-    fab.setAttribute('aria-controls', 'mobile-toc-dialog');
-
-    var overlay = document.createElement('div');
-    overlay.className = 'toc-overlay';
-    overlay.hidden = true;
-
-    var sheet = document.createElement('div');
-    sheet.className = 'toc-sheet';
-    sheet.id = 'mobile-toc-dialog';
-    sheet.setAttribute('role', 'dialog');
-    sheet.setAttribute('aria-modal', 'true');
-    sheet.setAttribute('aria-labelledby', 'mobile-toc-title');
-
-    var header = document.createElement('div');
-    header.className = 'toc-sheet-header';
-    var title = document.createElement('p');
-    title.className = 'toc-title';
-    title.id = 'mobile-toc-title';
-    title.textContent = '記事の目次';
-    var closeButton = document.createElement('button');
-    closeButton.className = 'toc-close';
-    closeButton.type = 'button';
-    closeButton.setAttribute('aria-label', '目次を閉じる');
-    closeButton.textContent = '×';
-    header.appendChild(title);
-    header.appendChild(closeButton);
-
-    var list = document.createElement('ol');
-    headings.forEach(function (heading) {
-      var item = document.createElement('li');
-      var link = document.createElement('a');
-      link.href = '#' + heading.id;
-      link.textContent = heading.textContent;
-      link.addEventListener('click', function () { closeToc(overlay, fab); });
-      item.appendChild(link);
-      list.appendChild(item);
-    });
-
-    sheet.appendChild(header);
-    sheet.appendChild(list);
-    overlay.appendChild(sheet);
-
-    fab.addEventListener('click', function () { openToc(overlay, sheet, fab); });
-    closeButton.addEventListener('click', function () { closeToc(overlay, fab); });
-    overlay.addEventListener('click', function (event) {
-      if (event.target === overlay) closeToc(overlay, fab);
-    });
-    sheet.addEventListener('keydown', function (event) {
-      trapDialogFocus(event, sheet, overlay, fab);
-    });
-
-    document.body.appendChild(fab);
-    document.body.appendChild(overlay);
-  }
-
   function buildBackToTop() {
     var button = document.createElement('button');
     button.className = 'back-to-top';
@@ -245,18 +158,14 @@
     button.hidden = true;
     button.setAttribute('aria-label', 'ページの先頭へ戻る');
     button.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
     });
 
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(function () {
-        button.hidden = window.scrollY <= 600;
-        ticking = false;
-      });
-    }, { passive: true });
+    function updateVisibility() {
+      button.hidden = window.scrollY <= 600;
+    }
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
     document.body.appendChild(button);
   }
 
@@ -272,7 +181,6 @@
     wrapTables();
     setupNavigation();
     setupCopyButtons();
-    buildFloatingToc();
     buildBackToTop();
     improveExternalLinks();
     updateMaldivesMeter();

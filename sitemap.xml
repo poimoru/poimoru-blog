@@ -7,6 +7,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://poimoru-blog.satorunaoi0731.workers.dev/categories/</loc>
+  </url>
+  <url>
+    <loc>https://poimoru-blog.satorunaoi0731.workers.dev/categories/steps</loc>
+  </url>
+  <url>
+    <loc>https://poimoru-blog.satorunaoi0731.workers.dev/categories/travel</loc>
+  </url>
+  <url>
+    <loc>https://poimoru-blog.satorunaoi0731.workers.dev/categories/idle</loc>
+  </url>
+  <url>
     <loc>https://poimoru-blog.satorunaoi0731.workers.dev/articles/kartie-point</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>

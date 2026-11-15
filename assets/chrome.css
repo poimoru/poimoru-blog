@@ -1,0 +1,191 @@
+/* Shared site navigation and footer */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid #d9e5e2;
+  padding: 0 16px;
+  transition: transform 180ms ease;
+}
+
+.site-header.is-hidden:not(:focus-within) {
+  transform: translateY(-100%);
+}
+
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 89;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d9e5e2;
+  border-radius: 6px;
+  background: white;
+  color: #006c65;
+  cursor: pointer;
+}
+.back-to-top[hidden] { display: none; }
+
+.site-header .site-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-family: "Zen Old Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 600;
+  color: #14272a;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+.site-header .site-title img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.site-header #navMenu a.nav-top {
+  color: #006c65;
+}
+
+.site-header #navMenu a {
+  color: #14272a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.site-header #navMenu a:hover {
+  color: #006c65;
+}
+
+.site-header .header-inner {
+  max-width: 1160px;
+  min-height: 64px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-header #navMenu { margin-left: auto; }
+.site-header .hamburger, .site-search {
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  flex: none;
+  border: 1px solid #d9e5e2;
+  border-radius: 5px;
+  background: white;
+  color: #14272a;
+  text-decoration: none;
+  font-size: 21px;
+}
+.site-search { display: inline-grid; }
+.site-search svg { width: 1em; height: 1em; }
+.site-header .hamburger { display: none; }
+
+.site-header .hamburger,
+.site-header .site-title img {
+  flex-shrink: 0;
+}
+
+.brand-link,
+.author-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-link img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.author-social {
+  flex-wrap: wrap;
+  margin: 8px 0 12px;
+}
+.profile-copy .author-social { justify-content: center; }
+
+.author-social .brand-link,
+.site-header #navMenu .brand-link {
+  display: inline-flex;
+  padding: 0 10px;
+  min-height: 44px;
+  border: 1px solid #d9e5e2;
+  border-radius: 4px;
+  color: #14272a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.author-social .brand-link:hover,
+.site-header #navMenu .brand-link:hover {
+  background: #f0f7f5;
+}
+
+#profile,
+#browse {
+  scroll-margin-top: 76px;
+}
+
+.site-footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 16px;
+  margin-bottom: 8px;
+}
+.site-footer {
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #4d6365;
+  background: #f0f7f5;
+  border-top: 1px solid #d9e5e2;
+}
+
+.site-footer .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: #006c65;
+}
+
+@media (min-width: 761px) {
+  .site-header #navMenu {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .site-header #navMenu a {
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header .header-inner { display: grid; grid-template-columns: 40px minmax(0,1fr) 40px; gap: 8px; }
+  .site-header .hamburger { display: inline-grid; grid-row: 1; grid-column: 1; }
+  .site-header .site-title { grid-row: 1; grid-column: 2; justify-content: center; text-align: center; font-size: 14px; }
+  .site-header .site-title img { display: none; }
+  .site-search { grid-row: 1; grid-column: 3; }
+  .site-header #navMenu { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; background: white; border-bottom: 1px solid #d9e5e2; }
+  .site-header #navMenu.open { display: grid; }
+  .site-header #navMenu a { display: flex; align-items: center; min-height: 44px; padding: 0 16px; margin: 0; border-top: 1px solid #d9e5e2; }
+  .site-header #navMenu .brand-link {
+    border-width: 1px 0 0;
+    border-radius: 0;
+    padding: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header { transition: none; }
+}

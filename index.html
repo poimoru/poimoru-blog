@@ -27,6 +27,7 @@
   <link rel="preload" href="/maldives.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600&amp;display=swap&amp;text=%E6%AD%A9%E3%81%84%E3%81%A6%E3%83%A2%E3%83%AB%E3%83%87%E3%82%A3%E3%83%96%E3%81%B8%E8%A1%8C%E3%81%8F%E7%94%B7">
   <link rel="stylesheet" href="/assets/home.css?v=1">
+  <link rel="stylesheet" href="/assets/chrome.css?v=1">
 </head>
 <body id="page-top">
   <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -38,19 +39,18 @@
   </svg>
   <a class="skip" href="#main">本文へスキップ</a>
   <header class="site-header">
-    <div class="shell masthead">
-      <button class="icon-button mobile-menu" type="button" aria-label="メニュー" aria-controls="nav" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
-      <a class="brand" href="#page-top"><img src="/icon.png" alt="" width="38" height="38"><span>歩いてモルディブへ行く男</span></a>
-      <nav id="nav" aria-label="メインメニュー"><a href="#page-top" aria-current="page">トップ</a><a href="#browse">アプリ一覧</a><a href="#profile">運営者情報</a></nav>
-      <div class="header-actions">
-        <button class="icon-button search-open" type="button" aria-label="記事を検索"><svg><use href="#i-search"/></svg></button>
-        <div class="social header-social">
-
-          <a class="social-link" href="https://www.youtube.com/@poimoru"><svg class="youtube" aria-hidden="true"><use href="#i-video"/></svg>YouTube</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <div class="header-inner">
+    <a href="/" class="site-title"><img src="/icon.png" width="256" height="248" alt="">歩いてモルディブへ行く男</a>
+    <nav id="navMenu" aria-label="メインナビゲーション">
+      <a class="nav-top" href="/" aria-current="page">トップ</a>
+      <a href="/categories/">アプリ一覧</a>
+      <a href="/#profile">運営者情報</a>
+      <a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" class="brand-link" target="_blank" rel="noopener"><img src="/assets/youtube-logo.png" alt="">YouTube</a>
+    </nav>
+    <button class="site-search search-open" type="button" aria-label="記事を検索"><svg aria-hidden="true"><use href="#i-search"/></svg></button>
+    <button class="hamburger" type="button" aria-label="メニューを開く" aria-controls="navMenu" aria-expanded="false">☰</button>
+  </div>
+</header>
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="title">
       <div class="shell hero-inner">
@@ -69,14 +69,12 @@
         </a>
       </section>
       <section class="browse" id="browse" aria-labelledby="browse-title">
-        <div class="section-head"><h2 class="section-title" id="browse-title">貯め方から探す</h2><button class="text-button search-open" type="button">すべての記事 <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
-        <div class="browse-tabs" aria-label="貯め方">
-          <a href="#steps">歩数</a><a href="#travel">移動</a><a href="#idle">放置</a>
-        </div>
+        <div class="section-head"><h2 class="section-title" id="browse-title">貯め方から探す</h2><a class="text-button" href="/categories/">すべての記事 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        <div class="browse-tabs" aria-label="貯め方"></div>
         <div id="collections"></div>
       </section>
       <section class="latest" aria-labelledby="latest-title">
-        <div class="section-head"><h2 class="section-title" id="latest-title">新着記事</h2><button class="text-button search-open" type="button">すべての記事 <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+        <div class="section-head"><h2 class="section-title" id="latest-title">新着記事</h2><a class="text-button" href="/categories/">すべての記事 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         <div id="latest"></div>
       </section>
       <aside class="sidebar" aria-label="運営者と記事検索">
@@ -85,11 +83,10 @@
           <div class="profile-copy">
             <h2 id="profile-title">運営者について</h2>
             <p class="author">ポイモル</p>
-            <p>ポイ活で貯めたポイントでモルディブを目指す会社員。使ったアプリの獲得ポイントや、広告を見たときの単価を記録しています。</p>
-            <div class="social">
-
-              <a class="social-link" href="https://www.youtube.com/@poimoru"><svg class="youtube" aria-hidden="true"><use href="#i-video"/></svg>YouTube</a>
-            </div>
+            <p>ポイ活歴4年以上。実際に使ったアプリのデータを正直に公開し、YouTubeやブログで発信中。</p>
+            <div class="author-social">
+        <a href="https://www.youtube.com/channel/UCXGq8bNq4kqBSEIodf85qVw" class="brand-link" target="_blank" rel="noopener"><img src="/assets/youtube-logo.png" alt="">YouTube</a>
+      </div>
           </div>
         </section>
         <section class="meter" aria-labelledby="meter-title">
@@ -107,13 +104,25 @@
       </aside>
     </div>
   </main>
-  <footer><div class="shell footer-inner"><strong>歩いてモルディブへ行く男</strong><nav aria-label="フッター"><a href="#profile">運営者情報</a><a href="/privacy.html">プライバシーポリシー</a><a href="/disclaimer.html">免責事項</a><a href="mailto:contact.poimoru@gmail.com">お問い合わせ</a></nav></div><p class="footer-note">収益は個人の実績であり、成果を保証するものではありません。当サイトはアフィリエイト広告を利用しています。</p></footer>
+  <footer class="site-footer">
+  <p class="footer-links">
+    <a href="/">トップ</a>
+    <a href="/categories/">アプリ一覧</a>
+    <a href="/#profile">運営者情報</a>
+    <a href="/privacy.html">プライバシーポリシー</a>
+    <a href="/disclaimer.html">免責事項</a>
+    <a href="mailto:contact.poimoru@gmail.com">お問い合わせ</a>
+  </p>
+  <p>収益は個人の実績であり、成果を保証するものではありません。当サイトはアフィリエイト広告を利用しています。</p>
+</footer>
   <dialog id="search-dialog" aria-labelledby="dialog-title">
     <div class="section-head"><h2 id="dialog-title">記事を探す</h2><form method="dialog"><button type="submit" class="icon-button" aria-label="閉じる">×</button></form></div>
     <label for="query">キーワード</label><input type="search" id="query" placeholder="アプリ名など">
     <label for="category">貯め方</label><select id="category"><option value="">すべて</option><option>歩数</option><option>移動</option><option>放置</option></select>
     <div id="results" aria-live="polite"></div>
   </dialog>
-  <script src="/assets/home.js?v=1" defer></script>
+  <script src="/assets/stories.js?v=1" defer></script>
+  <script src="/assets/site.js?v=5" defer></script>
+  <script src="/assets/home.js?v=3" defer></script>
 </body>
 </html>

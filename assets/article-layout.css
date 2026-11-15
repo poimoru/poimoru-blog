@@ -1,0 +1,29 @@
+.article-page .container { align-items: stretch; }
+.article-page .container .sidebar { min-width: 0; }
+.article-cover { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: contain; margin-top: 18px; border-radius: 5px; }
+.article-sticky { position: sticky; top: 80px; display: grid; grid-template-rows: minmax(0, auto) auto; max-height: calc(100dvh - 96px); gap: 10px; }
+.article-sticky .sidebar-card { margin: 0; }
+.article-side-toc { overflow: auto; overscroll-behavior: contain; }
+.article-side-invite { background: #fff7f3; border-color: #eac7b9; }
+.article-copy { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; width: 100%; line-height: 1.4; }
+.article-copy code { font-size: .95em; color: inherit; white-space: nowrap; }
+.article-floating { display: none; }
+.article-next { padding: 20px clamp(16px, 4%, 32px) 28px; border-top: 1px solid var(--border, #d9e5e2); }
+.article-next h2 { margin: 16px 0 4px; font-size: 1.25rem; }
+.article-next ul { list-style: none; padding: 0; margin: 0 0 14px; }
+.article-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.article-tags a, .article-all { color: #006c65; font-weight: 700; }
+.article-related-link { display: grid; grid-template-columns: minmax(0, 29%) minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid #d9e5e2; color: inherit; text-decoration: none; overflow-wrap: anywhere; }
+.article-related-link:hover strong { text-decoration: underline; }
+.article-related-link img { width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: contain; border-radius: 4px; }
+.article-related-link strong, .article-related-link time { display: block; }
+.article-related-link small, .article-related-link time { color: var(--text-muted); font-size: .78rem; }
+@media (max-width: 880px) {
+  .article-page .container .sidebar { grid-template-columns: minmax(0, 1fr); }
+  .article-sticky { display: none; }
+  .article-floating:not([hidden]) { position: fixed; display: block; z-index: 8; bottom: calc(12px + env(safe-area-inset-bottom)); left: 12px; max-width: calc(100% - 76px); }
+  .article-floating .article-copy { width: auto; padding: 7px 12px; box-shadow: 0 2px 8px #0002; }
+  .article-has-code { padding-bottom: calc(86px + env(safe-area-inset-bottom)); }
+  .article-page .back-to-top { bottom: calc(12px + env(safe-area-inset-bottom)); right: 12px; }
+}
+@media print { .article-floating { display: none !important; } }
