@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 252" role="img" aria-labelledby="title desc">
+  <title id="title">4本目の交換費用を取り戻すまで</title>
+  <desc id="desc">毎日1本多く回収する試算。3本のままの場合に比べ、交換直後は1万マイル少なく、毎回広告を見ると137日目、広告なしなら667日目に差がなくなります。</desc>
+  <rect width="400" height="252" fill="white"/>
+  <g fill="#193532" font-family="sans-serif" font-size="13">
+    <text x="12" y="23" font-weight="bold">4本目の交換費用を取り戻すまで</text>
+    <text x="12" y="47">3本のまま使った場合との差（マイル相当）</text>
+    <g stroke="#d7e3e0"><path d="M65 146H373 M65 204H373"/></g>
+    <path d="M65 88H373" stroke="#68817e"/>
+    <g text-anchor="end"><text x="58" y="92">0</text><text x="58" y="150">−5,000</text><text x="58" y="208">−10,000</text></g>
+    <path d="M65 204L125 88" fill="none" stroke="#08746b" stroke-width="3"/>
+    <path d="M65 204L358.33 88" fill="none" stroke="#975019" stroke-width="3" stroke-dasharray="7 4"/>
+    <g fill="#08746b"><circle cx="125" cy="88" r="3.5"/><text x="125" y="76" text-anchor="middle">広告あり：約137日目</text></g>
+    <g fill="#975019"><circle cx="358.33" cy="88" r="3.5"/><text x="376" y="76" text-anchor="end">広告なし：667日目</text></g>
+    <g text-anchor="middle"><text x="65" y="224">交換時</text><text x="175" y="224">250</text><text x="285" y="224">500</text><text x="373" y="224">700</text><text x="213" y="245">4本目で1本多く受け取れた日数</text></g>
+  </g>
+</svg>

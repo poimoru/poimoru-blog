@@ -1,0 +1,48 @@
+.article-content .toc .draft-toc-sublist {
+  margin: 0 0 4px;
+  padding-inline-start: 1.15em;
+  list-style: disc;
+}
+
+.article-side-toc .draft-toc-sublist,
+.draft-toc-toggle {
+  display: none;
+}
+
+@media (max-width: 880px) {
+  .draft-toc-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .draft-toc-toggle {
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #fff;
+    color: var(--teal-dark);
+    cursor: pointer;
+  }
+
+  .draft-toc-toggle::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+    transform: translateY(-2px) rotate(45deg);
+  }
+
+  .draft-toc-toggle[aria-expanded="true"]::before {
+    transform: translateY(2px) rotate(225deg);
+  }
+
+  .draft-toc-row:has([aria-expanded="false"]) + .draft-toc-sublist {
+    display: none;
+  }
+}

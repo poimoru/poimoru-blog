@@ -1,0 +1,98 @@
+.torima-code-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.torima-code-row .invite-code, .torima-code-row .copy-btn { margin: 0; }
+.torima-download {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent, #ff6b35);
+  text-align: left;
+}
+.torima-download > strong { font-size: 1.2rem; }
+.invite-box .torima-download p { margin: 4px 0; }
+.torima-store-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.article-content .torima-store-links a {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  background: white;
+  color: var(--accent-dark);
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+.article-content .torima-store-links a:is(:hover, :focus-visible) { text-decoration: underline; }
+
+.invite-box:has(.torima-download) { text-align: left; }
+.torima-code-row {
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #ecd6ce;
+  padding: 10px 12px;
+  margin-top: 14px;
+  border-radius: 6px;
+}
+.torima-code-row .invite-code { border: 0; background: none; padding: 0; }
+.torima-code-row .copy-btn { border-radius: 6px; padding: 10px 14px; }
+.torima-download {
+  display: grid;
+  grid-template-columns: 100px minmax(0,1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid #decfc8;
+  border-radius: 8px;
+}
+.torima-download .torima-app-icon { width: 100%; height: auto; margin: 0; border-radius: 16%; }
+.torima-app-details > strong { font-size: 1.2rem; }
+.torima-store-links { display: flex; flex-wrap: wrap; }
+.article-content .torima-store-links a {
+  padding: 6px 12px;
+  border: 0;
+  background: #202525;
+  color: white;
+  font-size: 14px;
+}
+@media (max-width: 540px) {
+  .torima-download { grid-template-columns: 64px minmax(0,1fr); gap: 10px; padding: 12px; }
+  .torima-app-details { display: contents; }
+  .torima-download .torima-app-icon { grid-row: 1 / 4; }
+  .torima-download p, .torima-download small { grid-column: 2; }
+  .torima-store-links { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; margin-top: 0; }
+}
+.article-content .torima-register-shot { width: min(100%, 360px); margin: 16px auto 26px; }
+.article-content .torima-register-shot img { display: block; width: 100%; height: auto; margin: 0; }
+.torima-register-shot figcaption { margin-top: 6px; font-size: .88rem; }
+.torima-register-crop { aspect-ratio: 1179 / 2098; overflow: hidden; }
+.article-content .torima-item-table { min-width: 32rem; table-layout: fixed; }
+.article-content .torima-item-table tr > :first-child { width: 5rem; min-width: 0; }
+.article-content .torima-item-table th,
+.article-content .torima-item-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.article-content .torima-item-table td strong { display: block; }
+.step-chart { min-width: 0; max-width: 540px; margin: 1.5rem auto; padding: .6rem; border: 1px solid #cededb; }
+.step-chart legend { font-weight: bold; }
+.step-chart label { cursor: pointer; margin-right: .5em; }
+.article-content .step-chart img { width: 100%; height: auto; margin: .75rem 0 0; }
+#step-chart-ads:checked ~ .step-noads, #step-chart-noads:checked ~ .step-ads { display: none; }
+.article-content table.torima-payback { width: 100%; min-width: 0; table-layout: fixed; }
+.article-content .torima-payback tr > :is(th, td) { width: auto; min-width: 0; white-space: normal; padding-inline: .4em; }
+.article-content .exchange-rank-table { font-size: clamp(.72rem, 2.7vw, .95rem); }
+.article-content .exchange-rank-table tr > :nth-child(1) { width: 19%; }
+.article-content .exchange-rank-table tr > :nth-child(2) { width: 29%; }
+.article-content .exchange-rank-table tr > :nth-child(3) { width: 15%; }
+.article-content .exchange-rank-table tr > :nth-child(4) { width: 37%; }

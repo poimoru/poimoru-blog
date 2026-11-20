@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 293" role="img" aria-labelledby="t d">
+  <title id="t">広告なし：30日間の歩数報酬の比較</title>
+  <desc id="d">交換費用を引いた累計。7日版は買い直さず、8日目から通常の回収に戻る。30日版が7日版を上回るのは21日目。</desc>
+  <rect width="400" height="293" fill="white"/>
+  <g font-family="sans-serif" font-size="13" fill="#193532">
+    <path d="M40 18h25" stroke="#975019" stroke-width="3" stroke-dasharray="7 4"/><text x="71" y="23">使わない</text>
+    <path d="M156 18h25" stroke="#315c99" stroke-width="3" stroke-dasharray="10 3 2 3"/><text x="187" y="23">7日版</text>
+    <path d="M272 18h25" stroke="#08746b" stroke-width="3" /><text x="303" y="23">30日版</text>
+    <text x="10" y="50">交換費用を引いた累計 (マイル)</text>
+    <path d="M60 248h318" stroke="#d7e3e0"/><text x="53" y="252" text-anchor="end">-2,000</text>
+    <path d="M60 208.89h318" stroke="#d7e3e0"/><text x="53" y="212.89" text-anchor="end">-1,000</text>
+    <path d="M60 169.78h318" stroke="#839995"/><text x="53" y="173.78" text-anchor="end">0</text>
+    <path d="M60 130.67h318" stroke="#d7e3e0"/><text x="53" y="134.67" text-anchor="end">1,000</text>
+    <path d="M60 91.56h318" stroke="#d7e3e0"/><text x="53" y="95.56" text-anchor="end">2,000</text>
+    <path d="M134.2 65V248" stroke="#b6c6c3" stroke-dasharray="2 4"/>
+    <polyline points="60,169.78 134.2,149.24 378,81.78" fill="none" stroke="#975019" stroke-width="3" stroke-dasharray="7 4"/>
+    <polyline points="60,208.89 134.2,167.82 378,100.36" fill="none" stroke="#315c99" stroke-width="3" stroke-dasharray="10 3 2 3"/>
+    <polyline points="60,248 134.2,206.93 378,72" fill="none" stroke="#08746b" stroke-width="3" />
+    <circle cx="134.2" cy="167.82" r="3.5" fill="#315c99"/>
+    <g text-anchor="middle"><text x="60" y="269">交換時</text><text x="134.2" y="269">7</text><text x="219" y="269">15</text><text x="378" y="269">30</text><text x="209" y="289">利用日数 (日)</text></g>
+  </g>
+</svg>

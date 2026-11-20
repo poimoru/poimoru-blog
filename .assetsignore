@@ -11,6 +11,10 @@
 !/assets/site.js
 !/assets/torima-toc.css
 !/assets/torima-toc.js
+!/assets/torima-download.css
+!/assets/torima-introduction.css
+!/assets/torima-intro-toc.css
+!/assets/torima-intro-toc.js
 !/assets/style.css
 !/assets/home.css
 !/assets/home.js
@@ -27,3 +31,4 @@
 !/articles/*.html
 !/articles/images/
 !/articles/images/*.png
+!/articles/images/*.svg

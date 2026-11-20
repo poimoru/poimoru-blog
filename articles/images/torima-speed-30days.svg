@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 293" role="img" aria-labelledby="t d">
+  <title id="t">広告なし：30日間の移動報酬の比較</title>
+  <desc id="d">毎日約10km。7日版は更新しません。広告なしでは、30日目も定期券を使わない方が30日版より200マイル多く残ります。</desc>
+  <rect width="400" height="293" fill="white"/>
+  <g font-family="sans-serif" font-size="13" fill="#193532">
+    <path d="M40 18h25" stroke="#975019" stroke-width="3" stroke-dasharray="7 4"/><text x="71" y="23">使わない</text>
+    <path d="M156 18h25" stroke="#315c99" stroke-width="3" stroke-dasharray="10 3 2 3"/><text x="187" y="23">7日版</text>
+    <path d="M272 18h25" stroke="#08746b" stroke-width="3" /><text x="303" y="23">30日版</text>
+    <text x="10" y="50">交換費用を引いた累計 (マイル)</text>
+    <path d="M60 248h318" stroke="#d7e3e0"/><text x="53" y="252" text-anchor="end">-2,000</text>
+    <path d="M60 213.77h318" stroke="#d7e3e0"/><text x="53" y="217.77" text-anchor="end">-1,500</text>
+    <path d="M60 179.54h318" stroke="#d7e3e0"/><text x="53" y="183.54" text-anchor="end">-1,000</text>
+    <path d="M60 145.31h318" stroke="#d7e3e0"/><text x="53" y="149.31" text-anchor="end">-500</text>
+    <path d="M60 111.08h318" stroke="#839995"/><text x="53" y="115.08" text-anchor="end">0</text>
+    <path d="M60 76.85h318" stroke="#d7e3e0"/><text x="53" y="80.85" text-anchor="end">500</text>
+    <path d="M134.2 65V248" stroke="#b6c6c3" stroke-dasharray="2 4"/>
+    <polyline points="60,111.08 134.2,103.89 378,80.27" fill="none" stroke="#975019" stroke-width="3" stroke-dasharray="7 4"/>
+    <polyline points="60,179.54 134.2,143.6 378,119.98" fill="none" stroke="#315c99" stroke-width="3" stroke-dasharray="10 3 2 3"/>
+    <polyline points="60,248 134.2,212.06 378,93.96" fill="none" stroke="#08746b" stroke-width="3" />
+    <circle cx="134.2" cy="143.6" r="3.5" fill="#315c99"/>
+    <g text-anchor="middle"><text x="60" y="269">交換時</text><text x="134.2" y="269">7</text><text x="219" y="269">15</text><text x="378" y="269">30</text><text x="209" y="289">利用日数 (日)</text></g>
+  </g>
+</svg>
