@@ -40,13 +40,16 @@
 
   if (!current) return;
   const tags = current[3];
-  const cover = document.createElement('img');
-  cover.className = 'article-cover';
-  cover.src = imageUrl(id);
-  cover.width = 1200;
-  cover.height = 630;
-  cover.alt = '';
-  main.querySelector('.article-header')?.append(cover);
+  const header = main.querySelector('.article-header');
+  if (header && !header.querySelector('.article-cover')) {
+    const cover = document.createElement('img');
+    cover.className = 'article-cover';
+    cover.src = imageUrl(id);
+    cover.width = 1200;
+    cover.height = 630;
+    cover.alt = '';
+    header.append(cover);
+  }
   const overlap = story => story[3].filter(tag => tags.includes(tag)).length;
   const related = stories.filter(story => story[0] !== id)
     .sort((a, b) => overlap(b) - overlap(a)).slice(0, 3);
