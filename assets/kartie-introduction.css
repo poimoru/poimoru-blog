@@ -1,0 +1,168 @@
+.article-content .kartie-quick-invite {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.kartie-quick-invite code {
+  margin-inline-start: 4px;
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.kartie-quick-invite .copy-btn { margin: 0; }
+
+.article-content .kartie-screen {
+  max-width: 520px;
+  margin: 16px auto 24px;
+}
+.article-content .kartie-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 1px solid var(--line, #d8e1e0);
+  border-radius: 6px;
+}
+.article-content .kartie-screen figcaption { margin-top: 8px; }
+.article-content .kartie-screen:has(img[height="1330"]) { max-width: 340px; }
+@media (min-width: 600px) {
+  .kartie-screen-flow {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+}
+
+.article-content .kartie-invite { text-align: left; }
+
+.kartie-code-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding: 12px;
+  border: 1px solid #ecd6ce;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.kartie-code-row > strong { font-size: 1.5rem; }
+.kartie-code-row .copy-btn { margin: 0; }
+
+.kartie-download {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #decfc8;
+  border-radius: 8px;
+}
+
+.article-content .kartie-download img {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 16%;
+}
+
+.kartie-app-details > strong { font-size: 1.2rem; }
+.article-content .kartie-download p { margin: 4px 0; }
+.kartie-download .kartie-store-links { margin-bottom: 0; }
+
+:is(.kartie-rating-details, .kartie-retry-details) { margin-block: 16px 24px; }
+
+:is(.kartie-rating-details, .kartie-retry-details) > summary {
+  min-height: 44px;
+  padding: 8px 0;
+  color: var(--teal);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.article-content :is(.kartie-rating-details, .kartie-retry-details) table {
+  display: table;
+  table-layout: fixed;
+  min-width: 0;
+}
+
+.kartie-rating-details th:nth-child(1) { width: 7em; }
+.article-content table.kartie-verdict {
+  display: table;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+.article-content .kartie-verdict :is(th, td) {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.kartie-verdict th:first-child { width: 8em; }
+.article-content :is(.kartie-verdict, .kartie-exchange-counts) .table-label-part {
+  display: inline;
+  white-space: normal;
+}
+.kartie-rating-details .table-yen { font-size: inherit; color: inherit; }
+.article-content .kartie-exchange-counts { table-layout: fixed; }
+.article-content .kartie-exchange-counts :is(th, td) {
+  min-width: 0;
+  white-space: normal;
+}
+.kartie-exchange-counts th:nth-child(1) { width: 32%; }
+.kartie-exchange-counts th:nth-child(2) { width: 44%; }
+.kartie-exchange-counts td span { display: inline-block; max-width: 100%; }
+.kartie-exchange-fees th:nth-child(1) { width: 45%; }
+.kartie-exchange-fees th:nth-child(2) { width: 20%; }
+.article-content .kartie-exchange-fees :is(th, td) { overflow-wrap: anywhere; }
+.kartie-rating-details th:nth-child(2) { width: 4em; }
+
+.article-content :is(.kartie-rating-details, .kartie-retry-details) :is(th, td) {
+  min-width: 0;
+  padding: 8px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.kartie-rating-details :is(th, td):nth-child(2) { text-align: center; }
+
+.kartie-store-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.article-content .kartie-store-links a {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  background: #202525;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.article-content .kartie-store-links a:is(:hover, :focus-visible) { text-decoration: underline; }
+
+@media (max-width: 540px) {
+  .kartie-store-links { flex-direction: column; }
+  .kartie-quick-invite small { flex-basis: 100%; }
+  .kartie-download {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px;
+  }
+  .kartie-app-details { display: contents; }
+  .kartie-download img { grid-row: 1 / 4; }
+  .kartie-download .kartie-store-links { grid-column: 1 / -1; margin-top: 0; }
+}
