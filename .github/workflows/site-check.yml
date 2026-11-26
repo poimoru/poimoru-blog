@@ -1,0 +1,47 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main, 'ops/site-checks*']
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+
+jobs:
+  site-check:
+    name: Poimoru site check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - run: gem install nokogiri --version 1.18.10 --no-document
+      - run: node scripts/build-categories.cjs --check
+      - run: ruby scripts/check-release.rb
+      - run: npm install --no-save --no-package-lock playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - name: Compare shared layout on PC and mobile
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
+          VISUAL_OUTPUT: ${{ runner.temp }}/poimoru-visual
+          ALLOW_VISUAL_CHANGE: ${{ contains(github.event.pull_request.labels.*.name, 'visual-change-approved') }}
+        run: |
+          git worktree add --detach "$RUNNER_TEMP/poimoru-base" "$BASE_SHA"
+          node scripts/visual-check.cjs "$RUNNER_TEMP/poimoru-base"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-differences
+          path: ${{ runner.temp }}/poimoru-visual/*.png
+          if-no-files-found: ignore
